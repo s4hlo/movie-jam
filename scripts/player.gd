@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED := 100.0
+const SPEED := 150.0
 
 # Referências aos nós
 @onready var anim: AnimationPlayer = $AnimationPlayer
