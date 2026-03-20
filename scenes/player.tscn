@@ -71,8 +71,8 @@ texture_filter = 1
 position = Vector2(-25.333332, -0.6666666)
 scale = Vector2(1.5208333, 1.5208333)
 texture = ExtResource("2_g2els")
-offset = Vector2(16, 0)
-hframes = 3
+centered = false
+hframes = 2
 vframes = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=55205336]
