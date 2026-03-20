@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://v5ic1m61ekld" path="res://assets/B_CatSprite.png" id="2_g2els"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1"]
-radius = 12.0
+radius = 30.0
 
 [sub_resource type="Animation" id="Animation_g2els"]
 length = 0.001
@@ -60,18 +60,14 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" unique_id=1539784073]
-scale = Vector2(3, 3)
 script = ExtResource("1")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="." unique_id=419966282]
 shape = SubResource("CircleShape2D_1")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=196733377]
-texture_filter = 1
-position = Vector2(-25.333332, -0.6666666)
-scale = Vector2(1.5208333, 1.5208333)
+scale = Vector2(5, 5)
 texture = ExtResource("2_g2els")
-centered = false
 hframes = 2
 vframes = 2
 

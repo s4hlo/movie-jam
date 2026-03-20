@@ -2,7 +2,7 @@ extends Node2D
 
 const ROOM_SCENE := preload("res://scenes/room.tscn")
 const PLAYER_SCENE := preload("res://scenes/player.tscn")
-const ROOM_SIZE := Vector2(640, 360)
+const ROOM_SIZE := Vector2(1280, 720)
 
 var current_room: Node2D = null
 var player: CharacterBody2D = null

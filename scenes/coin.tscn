@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://1u6fub7db7bf" path="res://assets/Coins.png" id="2_i64fm"]
 
 [sub_resource type="CircleShape2D" id="1"]
-radius = 6.0
+radius = 30.0
 
 [sub_resource type="Animation" id="Animation_i64fm"]
 length = 0.001
@@ -51,6 +51,7 @@ script = ExtResource("1")
 shape = SubResource("1")
 
 [node name="Visual" type="Sprite2D" parent="." unique_id=581270897]
+scale = Vector2(5, 5)
 texture = ExtResource("2_i64fm")
 hframes = 4
 

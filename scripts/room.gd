@@ -1,7 +1,7 @@
 extends Node2D
 
-const ROOM_SIZE := Vector2(640, 360)
-const WALL_THICKNESS := 16.0
+const ROOM_SIZE := Vector2(1280, 720)
+const WALL_THICKNESS := 20.0
 const WALL_COLOR := Color(0.35, 0.35, 0.4, 1.0)
 
 func _ready() -> void:
