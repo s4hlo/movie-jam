@@ -15,8 +15,14 @@ func _physics_process(_delta: float) -> void:
 	input.x = Input.get_axis("move_left", "move_right")
 	input.y = Input.get_axis("move_up", "move_down")
 	
-	if input.x != 0:
-		last_horizontal_dir = input.x
+	# Removido para virar a camera de acordo com o mouse
+	#if input.x != 0:
+		#last_horizontal_dir = input.x
+	var mouse_position = get_global_mouse_position()
+	if mouse_position.x > global_position.x:
+		last_horizontal_dir = 1.0
+	else:
+		last_horizontal_dir = -1.0
 		
 	# Movimentação e Física
 	velocity = input.normalized() * SPEED
