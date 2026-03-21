@@ -1,0 +1,105 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/room_base.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/coin.tscn" id="2"]
+
+[sub_resource type="RectangleShape2D" id="h_seg"]
+size = Vector2(580, 20)
+
+[sub_resource type="RectangleShape2D" id="v_full"]
+size = Vector2(20, 720)
+
+[node name="Room" type="Node2D"]
+script = ExtResource("1")
+
+[node name="Floor" type="ColorRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.12, 0.12, 0.15, 1)
+
+[node name="WallNorthLeft" type="StaticBody2D" parent="."]
+position = Vector2(290, 10)
+
+[node name="Collision" type="CollisionShape2D" parent="WallNorthLeft"]
+shape = SubResource("h_seg")
+
+[node name="Visual" type="ColorRect" parent="WallNorthLeft"]
+offset_left = -290.0
+offset_top = -10.0
+offset_right = 290.0
+offset_bottom = 10.0
+color = Color(0.35, 0.35, 0.4, 1)
+
+[node name="WallNorthRight" type="StaticBody2D" parent="."]
+position = Vector2(990, 10)
+
+[node name="Collision" type="CollisionShape2D" parent="WallNorthRight"]
+shape = SubResource("h_seg")
+
+[node name="Visual" type="ColorRect" parent="WallNorthRight"]
+offset_left = -290.0
+offset_top = -10.0
+offset_right = 290.0
+offset_bottom = 10.0
+color = Color(0.35, 0.35, 0.4, 1)
+
+[node name="WallSouthLeft" type="StaticBody2D" parent="."]
+position = Vector2(290, 710)
+
+[node name="Collision" type="CollisionShape2D" parent="WallSouthLeft"]
+shape = SubResource("h_seg")
+
+[node name="Visual" type="ColorRect" parent="WallSouthLeft"]
+offset_left = -290.0
+offset_top = -10.0
+offset_right = 290.0
+offset_bottom = 10.0
+color = Color(0.35, 0.35, 0.4, 1)
+
+[node name="WallSouthRight" type="StaticBody2D" parent="."]
+position = Vector2(990, 710)
+
+[node name="Collision" type="CollisionShape2D" parent="WallSouthRight"]
+shape = SubResource("h_seg")
+
+[node name="Visual" type="ColorRect" parent="WallSouthRight"]
+offset_left = -290.0
+offset_top = -10.0
+offset_right = 290.0
+offset_bottom = 10.0
+color = Color(0.35, 0.35, 0.4, 1)
+
+[node name="WallEast" type="StaticBody2D" parent="."]
+position = Vector2(1270, 360)
+
+[node name="Collision" type="CollisionShape2D" parent="WallEast"]
+shape = SubResource("v_full")
+
+[node name="Visual" type="ColorRect" parent="WallEast"]
+offset_left = -10.0
+offset_top = -360.0
+offset_right = 10.0
+offset_bottom = 360.0
+color = Color(0.35, 0.35, 0.4, 1)
+
+[node name="WallWest" type="StaticBody2D" parent="."]
+position = Vector2(10, 360)
+
+[node name="Collision" type="CollisionShape2D" parent="WallWest"]
+shape = SubResource("v_full")
+
+[node name="Visual" type="ColorRect" parent="WallWest"]
+offset_left = -10.0
+offset_top = -360.0
+offset_right = 10.0
+offset_bottom = 360.0
+color = Color(0.35, 0.35, 0.4, 1)
+
+[node name="Coin1" parent="." instance=ExtResource("2")]
+position = Vector2(640, 200)
+
+[node name="Coin2" parent="." instance=ExtResource("2")]
+position = Vector2(764, 361)
+
+[node name="Coin3" parent="." instance=ExtResource("2")]
+position = Vector2(640, 520)

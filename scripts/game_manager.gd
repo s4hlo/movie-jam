@@ -1,19 +1,18 @@
 extends Node2D
 
-const ROOM_SCENE := preload("res://scenes/room.tscn")
 const PLAYER_SCENE := preload("res://scenes/player.tscn")
-const ROOM_SIZE := Vector2(1280, 720)
 
-var current_room: Node2D = null
 var player: CharacterBody2D = null
+var room_manager: Node2D = null
 
 func _ready() -> void:
+	# Create RoomManager as first child (renders behind player)
+	room_manager = preload("res://scripts/room_manager.gd").new()
+	room_manager.name = "RoomManager"
+	add_child(room_manager)
+	move_child(room_manager, 0)
+
 	player = PLAYER_SCENE.instantiate()
 	add_child(player)
-	_load_room()
-	player.position = ROOM_SIZE / 2.0
 
-func _load_room() -> void:
-	current_room = ROOM_SCENE.instantiate()
-	add_child(current_room)
-	move_child(current_room, 0)
+	room_manager.start_new_run(player)
