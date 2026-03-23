@@ -2,6 +2,9 @@ extends Node2D
 
 const SPEED: int = 1300
 
+func _ready() -> void:
+	add_to_group("bullets")
+
 func _process(delta: float) -> void:
 	position += transform.x * SPEED * delta
 
