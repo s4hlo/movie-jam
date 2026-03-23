@@ -60,7 +60,7 @@ _data = {
 &"walk": SubResource("Animation_dqkch")
 }
 
-[node name="Player" type="CharacterBody2D" unique_id=1539784073]
+[node name="Player" type="CharacterBody2D" unique_id=1539784073 groups=["player"]]
 script = ExtResource("1")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="." unique_id=419966282]
