@@ -11,7 +11,7 @@ var target: Node2D = null
 
 func _ready() -> void:
 	detection_area.body_entered.connect(_on_detection_area_body_entered)
-	print("[Rat] ready, detection_area monitoring=", detection_area.monitoring)
+	print("[Rat] ready detection_area.monitoring=", detection_area.monitoring)
 
 func _physics_process(_delta: float) -> void:
 	match current_state:
@@ -23,8 +23,8 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
-	print("[Rat] body_entered: ", body.name, " in_group_player=", body.is_in_group("player"))
+	print("[Rat] entered body.name: ", body.name, " body.in_group_player=", body.is_in_group("player"))
 	if body.is_in_group("player"):
 		target = body
 		current_state = State.CHASING
-		print("[Rat] now CHASING")
+		print("[Rat] CHASING")

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene format=3 uid="uid://dws38yxu5oxax"]
 
-[ext_resource type="Script" path="res://scripts/room_base.gd" id="1"]
-[ext_resource type="PackedScene" path="res://scenes/coin.tscn" id="2"]
+[ext_resource type="Script" uid="uid://dndlb34yra7rn" path="res://scripts/room_base.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://1lov5r6rxbbk" path="res://scenes/coin.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/rat.tscn" id="3_560he"]
 
 [sub_resource type="RectangleShape2D" id="h_seg"]
 size = Vector2(580, 20)
@@ -9,97 +10,106 @@ size = Vector2(580, 20)
 [sub_resource type="RectangleShape2D" id="v_full"]
 size = Vector2(20, 720)
 
-[node name="Room" type="Node2D"]
+[node name="Room" type="Node2D" unique_id=1125330683]
 script = ExtResource("1")
 
-[node name="Floor" type="ColorRect" parent="."]
+[node name="Floor" type="ColorRect" parent="." unique_id=2084725607]
 offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0.12, 0.12, 0.15, 1)
 
-[node name="WallNorthLeft" type="StaticBody2D" parent="."]
+[node name="WallNorthLeft" type="StaticBody2D" parent="." unique_id=1077292636]
 position = Vector2(290, 10)
 
-[node name="Collision" type="CollisionShape2D" parent="WallNorthLeft"]
+[node name="Collision" type="CollisionShape2D" parent="WallNorthLeft" unique_id=2147178785]
 shape = SubResource("h_seg")
 
-[node name="Visual" type="ColorRect" parent="WallNorthLeft"]
+[node name="Visual" type="ColorRect" parent="WallNorthLeft" unique_id=636785256]
 offset_left = -290.0
 offset_top = -10.0
 offset_right = 290.0
 offset_bottom = 10.0
 color = Color(0.35, 0.35, 0.4, 1)
 
-[node name="WallNorthRight" type="StaticBody2D" parent="."]
+[node name="WallNorthRight" type="StaticBody2D" parent="." unique_id=1458532915]
 position = Vector2(990, 10)
 
-[node name="Collision" type="CollisionShape2D" parent="WallNorthRight"]
+[node name="Collision" type="CollisionShape2D" parent="WallNorthRight" unique_id=269687168]
 shape = SubResource("h_seg")
 
-[node name="Visual" type="ColorRect" parent="WallNorthRight"]
+[node name="Visual" type="ColorRect" parent="WallNorthRight" unique_id=2034430906]
 offset_left = -290.0
 offset_top = -10.0
 offset_right = 290.0
 offset_bottom = 10.0
 color = Color(0.35, 0.35, 0.4, 1)
 
-[node name="WallSouthLeft" type="StaticBody2D" parent="."]
+[node name="WallSouthLeft" type="StaticBody2D" parent="." unique_id=1711489125]
 position = Vector2(290, 710)
 
-[node name="Collision" type="CollisionShape2D" parent="WallSouthLeft"]
+[node name="Collision" type="CollisionShape2D" parent="WallSouthLeft" unique_id=1801834646]
 shape = SubResource("h_seg")
 
-[node name="Visual" type="ColorRect" parent="WallSouthLeft"]
+[node name="Visual" type="ColorRect" parent="WallSouthLeft" unique_id=6837884]
 offset_left = -290.0
 offset_top = -10.0
 offset_right = 290.0
 offset_bottom = 10.0
 color = Color(0.35, 0.35, 0.4, 1)
 
-[node name="WallSouthRight" type="StaticBody2D" parent="."]
+[node name="WallSouthRight" type="StaticBody2D" parent="." unique_id=2139370943]
 position = Vector2(990, 710)
 
-[node name="Collision" type="CollisionShape2D" parent="WallSouthRight"]
+[node name="Collision" type="CollisionShape2D" parent="WallSouthRight" unique_id=1212948135]
 shape = SubResource("h_seg")
 
-[node name="Visual" type="ColorRect" parent="WallSouthRight"]
+[node name="Visual" type="ColorRect" parent="WallSouthRight" unique_id=2051448060]
 offset_left = -290.0
 offset_top = -10.0
 offset_right = 290.0
 offset_bottom = 10.0
 color = Color(0.35, 0.35, 0.4, 1)
 
-[node name="WallEast" type="StaticBody2D" parent="."]
+[node name="WallEast" type="StaticBody2D" parent="." unique_id=586068504]
 position = Vector2(1270, 360)
 
-[node name="Collision" type="CollisionShape2D" parent="WallEast"]
+[node name="Collision" type="CollisionShape2D" parent="WallEast" unique_id=1933990797]
 shape = SubResource("v_full")
 
-[node name="Visual" type="ColorRect" parent="WallEast"]
+[node name="Visual" type="ColorRect" parent="WallEast" unique_id=425825556]
 offset_left = -10.0
 offset_top = -360.0
 offset_right = 10.0
 offset_bottom = 360.0
 color = Color(0.35, 0.35, 0.4, 1)
 
-[node name="WallWest" type="StaticBody2D" parent="."]
+[node name="WallWest" type="StaticBody2D" parent="." unique_id=646031424]
 position = Vector2(10, 360)
 
-[node name="Collision" type="CollisionShape2D" parent="WallWest"]
+[node name="Collision" type="CollisionShape2D" parent="WallWest" unique_id=864810028]
 shape = SubResource("v_full")
 
-[node name="Visual" type="ColorRect" parent="WallWest"]
+[node name="Visual" type="ColorRect" parent="WallWest" unique_id=903327738]
 offset_left = -10.0
 offset_top = -360.0
 offset_right = 10.0
 offset_bottom = 360.0
 color = Color(0.35, 0.35, 0.4, 1)
 
-[node name="Coin1" parent="." instance=ExtResource("2")]
+[node name="Coin1" parent="." unique_id=1443200037 instance=ExtResource("2")]
 position = Vector2(640, 200)
 
-[node name="Coin2" parent="." instance=ExtResource("2")]
+[node name="Coin2" parent="." unique_id=1570249921 instance=ExtResource("2")]
 position = Vector2(764, 361)
 
-[node name="Coin3" parent="." instance=ExtResource("2")]
+[node name="Coin3" parent="." unique_id=1291566759 instance=ExtResource("2")]
 position = Vector2(640, 520)
+
+[node name="Rat" parent="." unique_id=302272118 instance=ExtResource("3_560he")]
+position = Vector2(122, 634)
+
+[node name="Rat2" parent="." unique_id=752247901 instance=ExtResource("3_560he")]
+position = Vector2(141, 94)
+
+[node name="Rat3" parent="." unique_id=1467200039 instance=ExtResource("3_560he")]
+position = Vector2(1104, 627)
