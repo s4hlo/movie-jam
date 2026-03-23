@@ -118,6 +118,8 @@ func _generate_room(pos: Vector2i, from_direction: String) -> void:
 func _on_door_entered(direction: String) -> void:
 	if _transitioning:
 		return
+		
+	get_tree().call_group("bullets", "queue_free")
 	_transitioning = true
 
 	var target_pos: Vector2i = current_position + DIRECTION_OFFSETS[direction]
@@ -126,7 +128,8 @@ func _on_door_entered(direction: String) -> void:
 		_generate_room(target_pos, direction)
 
 	var entry_direction: String = OPPOSITE[direction]
-	_load_room(target_pos, entry_direction)
+	call_deferred("_load_room", target_pos, entry_direction)
+	
 
 func _save_room_state() -> void:
 	if current_room and grid.has(current_position):
