@@ -128,7 +128,7 @@ func _on_door_entered(direction: String) -> void:
 		_generate_room(target_pos, direction)
 
 	var entry_direction: String = OPPOSITE[direction]
-	_load_room(target_pos, entry_direction)
+	call_deferred("_load_room", target_pos, entry_direction)
 	
 
 func _save_room_state() -> void:
