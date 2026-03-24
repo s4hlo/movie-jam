@@ -73,7 +73,7 @@ func _add_door_area(pos: Vector2, size: Vector2, direction: String) -> void:
 	add_child(area)
 
 func _on_door_body_entered(body: Node2D, direction: String) -> void:
-	if body is CharacterBody2D:
+	if body.is_in_group("player"):
 		door_entered.emit(direction)
 
 func _apply_entity_states() -> void:
