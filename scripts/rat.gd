@@ -3,7 +3,7 @@ extends CharacterBody2D
 enum State { IDLE, CHASING }
 
 const SPEED := 150.0
-var health:int = 10
+var health:int = 20
 
 var current_state: State = State.IDLE
 var target: Node2D = null
@@ -24,7 +24,7 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func die() -> void:
-	print("rato morto")
+	print(" [Rat] killed")
 	queue_free()
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
