@@ -1,6 +1,7 @@
-extends Node2D
+extends Area2D
 
 const SPEED: int = 1300
+var damage:int = 10
 
 func _ready() -> void:
 	add_to_group("bullets")
