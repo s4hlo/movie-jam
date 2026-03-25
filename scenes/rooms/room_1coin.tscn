@@ -1,8 +1,38 @@
-[gd_scene format=3 uid="uid://bs7itatt0s3ln"]
+[gd_scene format=4 uid="uid://bs7itatt0s3ln"]
 
 [ext_resource type="Script" uid="uid://dndlb34yra7rn" path="res://scripts/room_base.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://1lov5r6rxbbk" path="res://scenes/coin.tscn" id="2"]
-[ext_resource type="PackedScene" path="res://scenes/rat.tscn" id="3_6ot0x"]
+[ext_resource type="Texture2D" uid="uid://c2r5sc8nwsh3a" path="res://assets/tilemap_moviejam.png" id="2_6qrvq"]
+[ext_resource type="PackedScene" uid="uid://ofxolt87xd57" path="res://scenes/rat.tscn" id="3_6ot0x"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_65hc1"]
+texture = ExtResource("2_6qrvq")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_krdxx"]
+sources/0 = SubResource("TileSetAtlasSource_65hc1")
 
 [sub_resource type="RectangleShape2D" id="h_seg"]
 size = Vector2(580, 20)
@@ -10,13 +40,42 @@ size = Vector2(580, 20)
 [sub_resource type="RectangleShape2D" id="v_seg"]
 size = Vector2(20, 300)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m60ar"]
+texture = ExtResource("2_6qrvq")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_xap41"]
+sources/0 = SubResource("TileSetAtlasSource_m60ar")
+
 [node name="Room" type="Node2D" unique_id=1946058850]
 script = ExtResource("1")
 
-[node name="Floor" type="ColorRect" parent="." unique_id=1729283542]
-offset_right = 1280.0
-offset_bottom = 720.0
-color = Color(0.12, 0.12, 0.15, 1)
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=892215115]
+scale = Vector2(5, 5)
+tile_map_data = PackedByteArray("AAAAAAAAAAABAAEAAAABAAAAAAABAAEAAAACAAEAAAABAAEAAAADAAIAAAABAAEAAAAEAAIAAAABAAEAAAAFAAIAAAABAAEAAAAGAAMAAAABAAEAAAAHAAMAAAABAAEAAAAIAAQAAAABAAEAAAAJAAQAAAABAAEAAAAJAAUAAAABAAEAAAAKAAUAAAABAAEAAAALAAUAAAABAAEAAAALAAYAAAABAAEAAAAMAAYAAAABAAEAAAANAAYAAAABAAEAAAANAAcAAAABAAEAAAAOAAcAAAABAAEAAAAPAAcAAAABAAEAAAAPAAgAAAABAAEAAAAAAAEAAAABAAEAAAAAAAIAAAABAAEAAAAAAAMAAAABAAEAAAAAAAQAAAABAAEAAAAAAAUAAAABAAEAAAAAAAYAAAABAAEAAAAAAAcAAAABAAEAAAAAAAgAAAABAAEAAAABAAEAAAABAAEAAAABAAIAAAABAAEAAAABAAMAAAABAAEAAAABAAQAAAABAAEAAAABAAUAAAABAAEAAAABAAYAAAABAAEAAAABAAcAAAABAAEAAAABAAgAAAABAAEAAAACAAAAAAABAAEAAAACAAIAAAABAAEAAAACAAMAAAABAAEAAAACAAQAAAABAAEAAAACAAUAAAABAAEAAAACAAYAAAABAAEAAAACAAcAAAABAAEAAAACAAgAAAABAAEAAAADAAAAAAABAAEAAAADAAEAAAABAAEAAAADAAMAAAABAAEAAAADAAQAAAABAAEAAAADAAUAAAABAAEAAAADAAYAAAABAAEAAAADAAcAAAABAAEAAAADAAgAAAABAAEAAAAEAAAAAAABAAEAAAAEAAEAAAABAAEAAAAEAAMAAAABAAEAAAAEAAQAAAABAAEAAAAEAAUAAAABAAEAAAAEAAYAAAABAAEAAAAEAAcAAAABAAEAAAAEAAgAAAABAAEAAAAFAAAAAAABAAEAAAAFAAEAAAABAAEAAAAFAAMAAAABAAEAAAAFAAQAAAABAAEAAAAFAAUAAAABAAEAAAAFAAYAAAABAAEAAAAFAAcAAAABAAEAAAAFAAgAAAABAAEAAAAGAAAAAAABAAEAAAAGAAEAAAABAAEAAAAGAAIAAAABAAEAAAAGAAQAAAABAAEAAAAGAAUAAAABAAEAAAAGAAYAAAABAAEAAAAGAAcAAAABAAEAAAAGAAgAAAABAAEAAAAHAAAAAAABAAEAAAAHAAEAAAABAAEAAAAHAAIAAAABAAEAAAAHAAQAAAABAAEAAAAHAAUAAAABAAEAAAAHAAYAAAABAAEAAAAHAAcAAAABAAEAAAAHAAgAAAABAAEAAAAIAAAAAAABAAEAAAAIAAEAAAABAAEAAAAIAAIAAAABAAEAAAAIAAMAAAABAAEAAAAIAAUAAAABAAEAAAAIAAYAAAABAAEAAAAIAAcAAAABAAEAAAAIAAgAAAABAAEAAAAJAAAAAAABAAEAAAAJAAEAAAABAAEAAAAJAAIAAAABAAEAAAAJAAMAAAABAAEAAAAJAAYAAAABAAEAAAAJAAcAAAABAAEAAAAJAAgAAAABAAEAAAAKAAAAAAABAAEAAAAKAAEAAAABAAEAAAAKAAIAAAABAAEAAAAKAAMAAAABAAEAAAAKAAQAAAABAAEAAAAKAAYAAAABAAEAAAAKAAcAAAABAAEAAAAKAAgAAAABAAEAAAALAAAAAAABAAEAAAALAAEAAAABAAEAAAALAAIAAAABAAEAAAALAAMAAAABAAEAAAALAAQAAAABAAEAAAALAAcAAAABAAEAAAALAAgAAAABAAEAAAAMAAAAAAABAAEAAAAMAAEAAAABAAEAAAAMAAIAAAABAAEAAAAMAAMAAAABAAEAAAAMAAQAAAABAAEAAAAMAAUAAAABAAEAAAAMAAcAAAABAAEAAAAMAAgAAAABAAEAAAANAAAAAAABAAEAAAANAAEAAAABAAEAAAANAAIAAAABAAEAAAANAAMAAAABAAEAAAANAAQAAAABAAEAAAANAAUAAAABAAEAAAANAAgAAAABAAEAAAAOAAAAAAABAAEAAAAOAAEAAAABAAEAAAAOAAIAAAABAAEAAAAOAAMAAAABAAEAAAAOAAQAAAABAAEAAAAOAAUAAAABAAEAAAAOAAYAAAABAAEAAAAOAAgAAAABAAEAAAAPAAAAAAABAAEAAAAPAAEAAAABAAEAAAAPAAIAAAABAAEAAAAPAAMAAAABAAEAAAAPAAQAAAABAAEAAAAPAAUAAAABAAEAAAAPAAYAAAABAAEAAAA=")
+tile_set = SubResource("TileSet_krdxx")
 
 [node name="WallNorthLeft" type="StaticBody2D" parent="." unique_id=1220087617]
 position = Vector2(290, 10)
@@ -25,6 +84,7 @@ position = Vector2(290, 10)
 shape = SubResource("h_seg")
 
 [node name="Visual" type="ColorRect" parent="WallNorthLeft" unique_id=1919177247]
+visible = false
 offset_left = -290.0
 offset_top = -10.0
 offset_right = 290.0
@@ -38,6 +98,7 @@ position = Vector2(990, 10)
 shape = SubResource("h_seg")
 
 [node name="Visual" type="ColorRect" parent="WallNorthRight" unique_id=292745153]
+visible = false
 offset_left = -290.0
 offset_top = -10.0
 offset_right = 290.0
@@ -51,6 +112,7 @@ position = Vector2(290, 710)
 shape = SubResource("h_seg")
 
 [node name="Visual" type="ColorRect" parent="WallSouthLeft" unique_id=769542138]
+visible = false
 offset_left = -290.0
 offset_top = -10.0
 offset_right = 290.0
@@ -64,6 +126,7 @@ position = Vector2(990, 710)
 shape = SubResource("h_seg")
 
 [node name="Visual" type="ColorRect" parent="WallSouthRight" unique_id=2118034847]
+visible = false
 offset_left = -290.0
 offset_top = -10.0
 offset_right = 290.0
@@ -77,6 +140,7 @@ position = Vector2(1270, 150)
 shape = SubResource("v_seg")
 
 [node name="Visual" type="ColorRect" parent="WallEastTop" unique_id=591436351]
+visible = false
 offset_left = -10.0
 offset_top = -150.0
 offset_right = 10.0
@@ -90,6 +154,7 @@ position = Vector2(1270, 570)
 shape = SubResource("v_seg")
 
 [node name="Visual" type="ColorRect" parent="WallEastBottom" unique_id=1503402711]
+visible = false
 offset_left = -10.0
 offset_top = -150.0
 offset_right = 10.0
@@ -103,6 +168,7 @@ position = Vector2(10, 150)
 shape = SubResource("v_seg")
 
 [node name="Visual" type="ColorRect" parent="WallWestTop" unique_id=402068128]
+visible = false
 offset_left = -10.0
 offset_top = -150.0
 offset_right = 10.0
@@ -116,11 +182,17 @@ position = Vector2(10, 570)
 shape = SubResource("v_seg")
 
 [node name="Visual" type="ColorRect" parent="WallWestBottom" unique_id=727381577]
+visible = false
 offset_left = -10.0
 offset_top = -150.0
 offset_right = 10.0
 offset_bottom = 150.0
 color = Color(0.35, 0.35, 0.4, 1)
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=1266618705]
+scale = Vector2(5, 5)
+tile_map_data = PackedByteArray("AAAGAAAAAAAFAAEAAAAFAAAAAAAFAAAAAAAEAAAAAAAFAAAAAAADAAAAAAAEAAIAAAACAAAAAAAFAAAAAAAPAAYAAAAEAAIAAFAPAAcAAAAFAAAAAFAPAAgAAAAFAAIAAFAOAAgAAAAEAAIAACANAAgAAAAEAAIAACAMAAgAAAAEAAIAACALAAgAAAAFAAAAADAKAAgAAAAEAAIAACAJAAgAAAAFAAEAACAAAAMAAAAFAAMAAGAAAAUAAAAFAAMAAEAJAAAAAAAFAAEAAAAAAAAAAAAFAAIAAGABAAAAAAAFAAEAAAAAAAEAAAAEAAIAAGAAAAIAAAAFAAEAAGAAAAYAAAAEAAIAAGAAAAcAAAAFAAAAAGAAAAgAAAAFAAIAADABAAgAAAAFAAAAADACAAgAAAAFAAEAACADAAgAAAAEAAIAADAEAAgAAAAEAAIAADAFAAgAAAAFAAEAACAGAAgAAAAFAAEAACAKAAAAAAAEAAIAAAALAAAAAAAFAAEAAAAMAAAAAAAFAAAAAAANAAAAAAAEAAIAAAAOAAAAAAAFAAAAAAAPAAEAAAAFAAEAAHAPAAIAAAAEAAIAAHAPAAMAAAAFAAMAAHAPAAUAAAAFAAMAAFAPAAAAAAAFAAIAAAA=")
+tile_set = SubResource("TileSet_xap41")
 
 [node name="Coin1" parent="." unique_id=387961669 instance=ExtResource("2")]
 position = Vector2(640, 360)
