@@ -4,6 +4,24 @@
 [ext_resource type="Texture2D" uid="uid://v5ic1m61ekld" path="res://assets/B_CatSprite.png" id="2_g2els"]
 [ext_resource type="PackedScene" uid="uid://clfy3rgty2ylm" path="res://scenes/gun.tscn" id="3_qhqgy"]
 
+[sub_resource type="Shader" id="Shader_hit"]
+code = "shader_type canvas_item;
+uniform bool hit = false;
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+	if (hit) {
+		COLOR = vec4(1.0, 1.0, 1.0, tex.a);
+	} else {
+		COLOR = tex;
+	}
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hit"]
+resource_local_to_scene = true
+shader = SubResource("Shader_hit")
+shader_parameter/hit = false
+
 [sub_resource type="Animation" id="Animation_g2els"]
 length = 0.001
 tracks/0/type = "value"
@@ -64,6 +82,7 @@ radius = 35.8
 script = ExtResource("1")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=196733377]
+material = SubResource("ShaderMaterial_hit")
 scale = Vector2(5, 5)
 texture = ExtResource("2_g2els")
 hframes = 2

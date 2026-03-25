@@ -129,3 +129,5 @@ shape = SubResource("RectangleShape2D_1l88y")
 libraries/ = SubResource("AnimationLibrary_rat")
 
 [connection signal="area_entered" from="HurtArea" to="." method="_on_hurt_area_area_entered"]
+[connection signal="body_entered" from="HurtArea" to="." method="_on_hurt_area_body_entered"]
+[connection signal="body_exited" from="HurtArea" to="." method="_on_hurt_area_body_exited"]
