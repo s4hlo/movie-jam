@@ -1,7 +1,11 @@
 [gd_scene format=3 uid="uid://b7ud3ca4r1urg"]
 
-[ext_resource type="Texture2D" uid="uid://dnnc0jrtqbyo" path="res://assets/Guns_N_Bullets.png" id="1_mkf8s"]
+[ext_resource type="Texture2D" uid="uid://hqf1qp04gb20" path="res://assets/Cat_Gun.png" id="1_mkf8s"]
 [ext_resource type="Script" uid="uid://ddiitam1uvkdq" path="res://scripts/bullet.gd" id="1_y25gk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y25gk"]
+atlas = ExtResource("1_mkf8s")
+region = Rect2(11, 0, 5, 5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y25gk"]
 size = Vector2(20, 15)
@@ -10,11 +14,10 @@ size = Vector2(20, 15)
 script = ExtResource("1_y25gk")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=793287796]
-position = Vector2(-4, 2)
+position = Vector2(7.9999995, -0.99999976)
 rotation = -3.1415927
 scale = Vector2(5, -5)
-texture = ExtResource("1_mkf8s")
-vframes = 5
+texture = SubResource("AtlasTexture_y25gk")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=619266423]
 rect = Rect2(-64, -64, 128, 128)

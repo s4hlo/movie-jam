@@ -1,13 +1,40 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=3 uid="uid://dtxrv36cqfbqc"]
 
-[ext_resource type="Script" path="res://scripts/hud.gd" id="1"]
+[ext_resource type="Script" uid="uid://ohvspr5xd3gc" path="res://scripts/hud.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://djf6qekw3sd2f" path="res://assets/AtlasTextures/hp_under_green.tres" id="2_047uy"]
+[ext_resource type="Texture2D" uid="uid://cidy2tjoicxci" path="res://assets/HP_Bar.png" id="2_oo0fn"]
+[ext_resource type="Texture2D" uid="uid://b2khmb262m4kj" path="res://assets/AtlasTextures/hp_under_yellow.tres" id="3_5pdws"]
+[ext_resource type="Texture2D" uid="uid://dmgq3g4gt2hgi" path="res://assets/AtlasTextures/hp_under_red.tres" id="3_6fi6k"]
 
-[node name="HUD" type="CanvasLayer"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_047uy"]
+atlas = ExtResource("2_oo0fn")
+region = Rect2(3, 8, 26, 2)
+margin = Rect2(2, 2, 0, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5pdws"]
+atlas = ExtResource("2_oo0fn")
+region = Rect2(1, 1, 30, 6)
+
+[node name="HUD" type="CanvasLayer" unique_id=2059501516 groups=["Interface"]]
 script = ExtResource("1")
+background_textures = Array[Texture2D]([ExtResource("2_047uy"), ExtResource("3_5pdws"), ExtResource("3_6fi6k")])
 
-[node name="CoinLabel" type="Label" parent="."]
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 150.0
-offset_bottom = 28.0
+[node name="CoinLabel" type="Label" parent="." unique_id=719704152]
+offset_left = 42.0
+offset_top = 55.0
+offset_right = 184.0
+offset_bottom = 78.0
 text = "Coins: 0"
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1564828479]
+offset_left = 12.000001
+offset_top = 13.999999
+offset_right = 42.0
+offset_bottom = 20.0
+scale = Vector2(5, 5)
+value = 20.0
+texture_under = SubResource("AtlasTexture_047uy")
+texture_over = SubResource("AtlasTexture_5pdws")
+texture_progress = ExtResource("2_047uy")
+texture_progress_offset = Vector2(2, 2)
+tint_under = Color(0, 0, 0, 1)

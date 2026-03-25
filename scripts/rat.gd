@@ -1,43 +1,57 @@
 extends CharacterBody2D
 
-enum State { IDLE, CHASING }
+enum State { IDLE, CHASING, DEAD }
 
 const SPEED := 150.0
-var health:int = 20
+var health: int = 20
+var damage: int = 5
 
 var current_state: State = State.IDLE
 var target: Node2D = null
 
 @onready var detection_area: Area2D = $DetectionArea
+@onready var anim: AnimationPlayer = $AnimationPlayer
+@onready var sprite: Sprite2D = $Sprite
 
 func _ready() -> void:
 	detection_area.body_entered.connect(_on_detection_area_body_entered)
-	print("[Rat] ready detection_area.monitoring=", detection_area.monitoring)
 
 func _physics_process(_delta: float) -> void:
 	match current_state:
 		State.IDLE:
 			velocity = Vector2.ZERO
+			anim.play("idle")
 		State.CHASING:
 			if target:
-				velocity = global_position.direction_to(target.global_position) * SPEED
+				var dir = global_position.direction_to(target.global_position)
+				velocity = dir * SPEED
+				sprite.flip_h = dir.x > 0
+			anim.play("walk")
+		State.DEAD:
+			velocity = Vector2.ZERO
 	move_and_slide()
 
 func die() -> void:
-	print(" [Rat] killed")
+	if current_state == State.DEAD:
+		return
+	current_state = State.DEAD
+	set_physics_process(false)
+	anim.stop()
+	sprite.frame = 22
+	await get_tree().create_timer(0.5).timeout
 	queue_free()
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
-	print("[Rat] entered body.name: ", body.name, " body.in_group_player=", body.is_in_group("player"))
 	if body.is_in_group("player"):
 		target = body
 		current_state = State.CHASING
-		print("[Rat] CHASING")
 
 func _on_hurt_area_area_entered(area: Area2D) -> void:
 	if area.is_in_group("bullets"):
 		health -= area.damage
 		area.queue_free()
-
-	if health <= 0:
-		die()
+		if health <= 0:
+			die()
+	if area.is_in_group("player"):
+		area.take_damage(damage)
+		print("recebeu dano")
