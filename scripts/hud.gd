@@ -20,6 +20,7 @@ func update_life(current_life: float, maximum_life: float):
 	hp_bar.value = current_life
 	
 	var percentage = current_life / maximum_life
+	print(percentage," " ,current_life," ",maximum_life)
 	
 	if percentage > 0.54:
 		update_texture_bar(0)
@@ -30,4 +31,4 @@ func update_life(current_life: float, maximum_life: float):
 
 func update_texture_bar(index: int):
 	if background_textures.size() > index and background_textures[index] != null:
-		hp_bar.texture_under = background_textures[index]
+		hp_bar.texture_progress = background_textures[index]
