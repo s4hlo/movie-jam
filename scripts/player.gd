@@ -59,7 +59,13 @@ func take_damage(amount: float, knock_dir := Vector2.ZERO):
 	current_life = clamp(current_life, 0.0, max_life)
 	knockback = knock_dir * KNOCKBACK_FORCE
 	get_tree().call_group("Interface", "update_life", current_life, max_life)
+	if current_life <= 0:
+		die()
+		return
 	start_invincibility()
+
+func die() -> void:
+	get_tree().call_group("GameOver", "show_game_over")
 
 func start_invincibility() -> void:
 	is_invincible = true
