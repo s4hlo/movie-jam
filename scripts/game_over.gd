@@ -11,5 +11,6 @@ func show_game_over() -> void:
 	$VBox/MainMenu.grab_focus()
 
 func _on_main_menu_pressed() -> void:
+	Input.set_custom_mouse_cursor(null)
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

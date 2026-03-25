@@ -1,11 +1,14 @@
 extends Node2D
 
 const PLAYER_SCENE := preload("res://scenes/player.tscn")
+const AIM_CURSOR := preload("res://assets/Aim.png")
 
 var player: CharacterBody2D = null
 var room_manager: Node2D = null
 
 func _ready() -> void:
+	Input.set_custom_mouse_cursor(AIM_CURSOR, Input.CURSOR_ARROW, AIM_CURSOR.get_size() / 2)
+
 	# Create RoomManager as first child (renders behind player)
 	room_manager = preload("res://scripts/room_manager.gd").new()
 	room_manager.name = "RoomManager"
