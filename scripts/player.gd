@@ -9,6 +9,12 @@ const SPEED := 300.0
 # Começa em -1.0 pois o sprite original olha para a esquerda
 var last_horizontal_dir: float = -1.0
 
+var max_life: float = 100.0
+var current_life: float = 100.0
+
+func _ready() -> void:
+	get_tree().call_group("Interface", "update_life", current_life, max_life)
+
 func _physics_process(_delta: float) -> void:
 	# Input (WASD ou Setas)
 	var input := Vector2.ZERO
@@ -36,3 +42,9 @@ func _physics_process(_delta: float) -> void:
 	else:
 		# Se estiver parado, executa a animação idle
 		anim.play("idle")
+
+func take_damage(amount: float):
+	current_life -= amount
+	current_life = clamp(current_life, 0.0, max_life)
+	
+	get_tree().call_group("Interface", "update_life", current_life, max_life)

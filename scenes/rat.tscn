@@ -104,6 +104,7 @@ shape = SubResource("detection_shape")
 scale = Vector2(2.442675, 2.6444042)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea" unique_id=408443223]
+scale = Vector2(0.99999994, 1)
 shape = SubResource("RectangleShape2D_1l88y")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1827585988]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnnc0jrtqbyo"
-path="res://.godot/imported/Guns_N_Bullets.png-b61c69f2a5545cf9eb031ea6cf0ea764.ctex"
+uid="uid://cos0sao72frb0"
+path="res://.godot/imported/HP BAR.png-7d1c982718bfaaee8294cc245cc37eaf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Guns_N_Bullets.png"
-dest_files=["res://.godot/imported/Guns_N_Bullets.png-b61c69f2a5545cf9eb031ea6cf0ea764.ctex"]
+source_file="res://assets/HP BAR.png"
+dest_files=["res://.godot/imported/HP BAR.png-7d1c982718bfaaee8294cc245cc37eaf.ctex"]
 
 [params]
 

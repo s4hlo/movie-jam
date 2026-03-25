@@ -4,6 +4,7 @@ enum State { IDLE, CHASING, DEAD }
 
 const SPEED := 150.0
 var health: int = 20
+var damage: int = 5
 
 var current_state: State = State.IDLE
 var target: Node2D = null
@@ -51,3 +52,6 @@ func _on_hurt_area_area_entered(area: Area2D) -> void:
 		area.queue_free()
 		if health <= 0:
 			die()
+	if area.is_in_group("player"):
+		area.take_damage(damage)
+		print("recebeu dano")
