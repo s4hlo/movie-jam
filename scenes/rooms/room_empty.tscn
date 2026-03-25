@@ -1,6 +1,36 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene format=4 uid="uid://ce2u8df8rotb4"]
 
-[ext_resource type="Script" path="res://scripts/room_base.gd" id="1"]
+[ext_resource type="Script" uid="uid://dndlb34yra7rn" path="res://scripts/room_base.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://c2r5sc8nwsh3a" path="res://assets/tilemap_moviejam.png" id="2_ps7y8"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xb5b7"]
+texture = ExtResource("2_ps7y8")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_6egnj"]
+sources/0 = SubResource("TileSetAtlasSource_xb5b7")
 
 [sub_resource type="RectangleShape2D" id="h_seg"]
 size = Vector2(580, 20)
@@ -8,114 +38,127 @@ size = Vector2(580, 20)
 [sub_resource type="RectangleShape2D" id="v_seg"]
 size = Vector2(20, 300)
 
-[node name="Room" type="Node2D"]
+[node name="Room" type="Node2D" unique_id=1024354261]
 script = ExtResource("1")
 
-[node name="Floor" type="ColorRect" parent="."]
-offset_right = 1280.0
-offset_bottom = 720.0
-color = Color(0.12, 0.12, 0.15, 1)
+[node name="Floor" type="TileMapLayer" parent="." unique_id=172613941]
+scale = Vector2(5, 5)
+tile_map_data = PackedByteArray("AAAAAAAAAAABAAEAAAABAAAAAAABAAEAAAABAAEAAAABAAEAAAACAAEAAAABAAEAAAADAAIAAAABAAEAAAAEAAMAAAABAAEAAAAFAAMAAAABAAEAAAAGAAQAAAABAAEAAAAHAAQAAAABAAEAAAAIAAUAAAABAAEAAAAJAAUAAAABAAEAAAAJAAYAAAABAAEAAAAKAAYAAAABAAEAAAALAAYAAAABAAEAAAAMAAYAAAABAAEAAAAMAAcAAAABAAEAAAAAAAEAAAABAAEAAAAAAAIAAAABAAEAAAAAAAMAAAABAAEAAAAAAAQAAAABAAEAAAAAAAUAAAABAAEAAAAAAAYAAAABAAEAAAAAAAcAAAABAAEAAAAAAAgAAAABAAEAAAABAAIAAAABAAEAAAABAAMAAAABAAEAAAABAAQAAAABAAEAAAABAAUAAAABAAEAAAABAAYAAAABAAEAAAABAAcAAAABAAEAAAABAAgAAAABAAEAAAACAAAAAAABAAEAAAACAAIAAAABAAEAAAACAAMAAAABAAEAAAACAAQAAAABAAEAAAACAAUAAAABAAEAAAACAAYAAAABAAEAAAACAAcAAAABAAEAAAACAAgAAAABAAEAAAADAAAAAAABAAEAAAADAAEAAAABAAEAAAADAAMAAAABAAEAAAADAAQAAAABAAEAAAADAAUAAAABAAEAAAADAAYAAAABAAEAAAADAAcAAAABAAEAAAADAAgAAAABAAEAAAAEAAAAAAABAAEAAAAEAAEAAAABAAEAAAAEAAIAAAABAAEAAAAEAAQAAAABAAEAAAAEAAUAAAABAAEAAAAEAAYAAAABAAEAAAAEAAcAAAABAAEAAAAEAAgAAAABAAEAAAAFAAAAAAABAAEAAAAFAAEAAAABAAEAAAAFAAIAAAABAAEAAAAFAAQAAAABAAEAAAAFAAUAAAABAAEAAAAFAAYAAAABAAEAAAAFAAcAAAABAAEAAAAFAAgAAAABAAEAAAAGAAAAAAABAAEAAAAGAAEAAAABAAEAAAAGAAIAAAABAAEAAAAGAAMAAAABAAEAAAAGAAUAAAABAAEAAAAGAAYAAAABAAEAAAAGAAcAAAABAAEAAAAGAAgAAAABAAEAAAAHAAAAAAABAAEAAAAHAAEAAAABAAEAAAAHAAIAAAABAAEAAAAHAAMAAAABAAEAAAAHAAUAAAABAAEAAAAHAAYAAAABAAEAAAAHAAcAAAABAAEAAAAHAAgAAAABAAEAAAAIAAAAAAABAAEAAAAIAAEAAAABAAEAAAAIAAIAAAABAAEAAAAIAAMAAAABAAEAAAAIAAQAAAABAAEAAAAIAAYAAAABAAEAAAAIAAcAAAABAAEAAAAIAAgAAAABAAEAAAAJAAAAAAABAAEAAAAJAAEAAAABAAEAAAAJAAIAAAABAAEAAAAJAAMAAAABAAEAAAAJAAQAAAABAAEAAAAJAAcAAAABAAEAAAAJAAgAAAABAAEAAAAKAAAAAAABAAEAAAAKAAEAAAABAAEAAAAKAAIAAAABAAEAAAAKAAMAAAABAAEAAAAKAAQAAAABAAEAAAAKAAUAAAABAAEAAAAKAAcAAAABAAEAAAAKAAgAAAABAAEAAAALAAAAAAABAAEAAAALAAEAAAABAAEAAAALAAIAAAABAAEAAAALAAMAAAABAAEAAAALAAQAAAABAAEAAAALAAUAAAABAAEAAAALAAcAAAABAAEAAAALAAgAAAABAAEAAAAMAAAAAAABAAEAAAAMAAEAAAABAAEAAAAMAAIAAAABAAEAAAAMAAMAAAABAAEAAAAMAAQAAAABAAEAAAAMAAUAAAABAAEAAAAMAAgAAAABAAEAAAANAAAAAAABAAEAAAANAAEAAAABAAEAAAANAAIAAAABAAEAAAANAAMAAAABAAEAAAANAAQAAAABAAEAAAANAAUAAAABAAEAAAANAAYAAAABAAEAAAANAAcAAAABAAEAAAANAAgAAAABAAEAAAAOAAAAAAABAAEAAAAOAAEAAAABAAEAAAAOAAIAAAABAAEAAAAOAAMAAAABAAEAAAAOAAQAAAABAAEAAAAOAAUAAAABAAEAAAAOAAYAAAABAAEAAAAOAAcAAAABAAEAAAAOAAgAAAABAAEAAAAPAAAAAAABAAEAAAAPAAEAAAABAAEAAAAPAAIAAAABAAEAAAAPAAMAAAABAAEAAAAPAAQAAAABAAEAAAAPAAUAAAABAAEAAAAPAAYAAAABAAEAAAAPAAcAAAABAAEAAAAPAAgAAAABAAEAAAA=")
+tile_set = SubResource("TileSet_6egnj")
 
-[node name="WallNorthLeft" type="StaticBody2D" parent="."]
+[node name="WallNorthLeft" type="StaticBody2D" parent="." unique_id=1871167083]
 position = Vector2(290, 10)
 
-[node name="Collision" type="CollisionShape2D" parent="WallNorthLeft"]
+[node name="Collision" type="CollisionShape2D" parent="WallNorthLeft" unique_id=377391341]
 shape = SubResource("h_seg")
 
-[node name="Visual" type="ColorRect" parent="WallNorthLeft"]
+[node name="Visual" type="ColorRect" parent="WallNorthLeft" unique_id=1890068056]
+visible = false
 offset_left = -290.0
 offset_top = -10.0
 offset_right = 290.0
 offset_bottom = 10.0
 color = Color(0.35, 0.35, 0.4, 1)
 
-[node name="WallNorthRight" type="StaticBody2D" parent="."]
+[node name="WallNorthRight" type="StaticBody2D" parent="." unique_id=223168283]
 position = Vector2(990, 10)
 
-[node name="Collision" type="CollisionShape2D" parent="WallNorthRight"]
+[node name="Collision" type="CollisionShape2D" parent="WallNorthRight" unique_id=802446305]
 shape = SubResource("h_seg")
 
-[node name="Visual" type="ColorRect" parent="WallNorthRight"]
+[node name="Visual" type="ColorRect" parent="WallNorthRight" unique_id=1556849553]
+visible = false
 offset_left = -290.0
 offset_top = -10.0
 offset_right = 290.0
 offset_bottom = 10.0
 color = Color(0.35, 0.35, 0.4, 1)
 
-[node name="WallSouthLeft" type="StaticBody2D" parent="."]
+[node name="WallSouthLeft" type="StaticBody2D" parent="." unique_id=235702087]
 position = Vector2(290, 710)
 
-[node name="Collision" type="CollisionShape2D" parent="WallSouthLeft"]
+[node name="Collision" type="CollisionShape2D" parent="WallSouthLeft" unique_id=1543819848]
 shape = SubResource("h_seg")
 
-[node name="Visual" type="ColorRect" parent="WallSouthLeft"]
+[node name="Visual" type="ColorRect" parent="WallSouthLeft" unique_id=88947118]
+visible = false
 offset_left = -290.0
 offset_top = -10.0
 offset_right = 290.0
 offset_bottom = 10.0
 color = Color(0.35, 0.35, 0.4, 1)
 
-[node name="WallSouthRight" type="StaticBody2D" parent="."]
+[node name="WallSouthRight" type="StaticBody2D" parent="." unique_id=1696277458]
 position = Vector2(990, 710)
 
-[node name="Collision" type="CollisionShape2D" parent="WallSouthRight"]
+[node name="Collision" type="CollisionShape2D" parent="WallSouthRight" unique_id=122015089]
 shape = SubResource("h_seg")
 
-[node name="Visual" type="ColorRect" parent="WallSouthRight"]
+[node name="Visual" type="ColorRect" parent="WallSouthRight" unique_id=1184081010]
+visible = false
 offset_left = -290.0
 offset_top = -10.0
 offset_right = 290.0
 offset_bottom = 10.0
 color = Color(0.35, 0.35, 0.4, 1)
 
-[node name="WallEastTop" type="StaticBody2D" parent="."]
+[node name="WallEastTop" type="StaticBody2D" parent="." unique_id=1620513344]
 position = Vector2(1270, 150)
 
-[node name="Collision" type="CollisionShape2D" parent="WallEastTop"]
+[node name="Collision" type="CollisionShape2D" parent="WallEastTop" unique_id=266627839]
 shape = SubResource("v_seg")
 
-[node name="Visual" type="ColorRect" parent="WallEastTop"]
+[node name="Visual" type="ColorRect" parent="WallEastTop" unique_id=1379799384]
+visible = false
 offset_left = -10.0
 offset_top = -150.0
 offset_right = 10.0
 offset_bottom = 150.0
 color = Color(0.35, 0.35, 0.4, 1)
 
-[node name="WallEastBottom" type="StaticBody2D" parent="."]
+[node name="WallEastBottom" type="StaticBody2D" parent="." unique_id=1316887964]
 position = Vector2(1270, 570)
 
-[node name="Collision" type="CollisionShape2D" parent="WallEastBottom"]
+[node name="Collision" type="CollisionShape2D" parent="WallEastBottom" unique_id=1274294162]
 shape = SubResource("v_seg")
 
-[node name="Visual" type="ColorRect" parent="WallEastBottom"]
+[node name="Visual" type="ColorRect" parent="WallEastBottom" unique_id=1029149947]
+visible = false
 offset_left = -10.0
 offset_top = -150.0
 offset_right = 10.0
 offset_bottom = 150.0
 color = Color(0.35, 0.35, 0.4, 1)
 
-[node name="WallWestTop" type="StaticBody2D" parent="."]
+[node name="WallWestTop" type="StaticBody2D" parent="." unique_id=64102131]
 position = Vector2(10, 150)
 
-[node name="Collision" type="CollisionShape2D" parent="WallWestTop"]
+[node name="Collision" type="CollisionShape2D" parent="WallWestTop" unique_id=1652172807]
 shape = SubResource("v_seg")
 
-[node name="Visual" type="ColorRect" parent="WallWestTop"]
+[node name="Visual" type="ColorRect" parent="WallWestTop" unique_id=895775468]
+visible = false
 offset_left = -10.0
 offset_top = -150.0
 offset_right = 10.0
 offset_bottom = 150.0
 color = Color(0.35, 0.35, 0.4, 1)
 
-[node name="WallWestBottom" type="StaticBody2D" parent="."]
+[node name="WallWestBottom" type="StaticBody2D" parent="." unique_id=694172217]
 position = Vector2(10, 570)
 
-[node name="Collision" type="CollisionShape2D" parent="WallWestBottom"]
+[node name="Collision" type="CollisionShape2D" parent="WallWestBottom" unique_id=2145244131]
 shape = SubResource("v_seg")
 
-[node name="Visual" type="ColorRect" parent="WallWestBottom"]
+[node name="Visual" type="ColorRect" parent="WallWestBottom" unique_id=2062546709]
+visible = false
 offset_left = -10.0
 offset_top = -150.0
 offset_right = 10.0
 offset_bottom = 150.0
 color = Color(0.35, 0.35, 0.4, 1)
+
+[node name="Walls" type="TileMapLayer" parent="." unique_id=1961617205]
+scale = Vector2(5, 5)
+tile_map_data = PackedByteArray("AAAPAAAAAAAFAAIAAAAAAAAAAAAFAAIAAGAAAAgAAAAFAAIAADAPAAgAAAAFAAIAAFAOAAAAAAAFAAEAAAANAAAAAAAEAAIAABAMAAAAAAAFAAAAAAALAAAAAAAFAAEAAAAKAAAAAAAEAAIAABAJAAAAAAAFAAEAAAAGAAAAAAAFAAAAAAAFAAAAAAAFAAEAAAAEAAAAAAAEAAIAABADAAAAAAAFAAAAAAACAAAAAAAEAAIAABABAAAAAAAFAAEAAAAAAAEAAAAEAAIAAEAAAAIAAAAFAAEAAEAAAAMAAAAFAAMAAGAAAAUAAAAFAAMAAEAPAAUAAAAFAAMAAFAPAAMAAAAFAAMAAHAPAAIAAAAEAAIAAFAPAAEAAAAFAAEAAFAPAAYAAAAFAAEAAFAPAAcAAAAEAAIAAHAOAAgAAAAFAAEAACANAAgAAAAEAAIAACAMAAgAAAAFAAAAADALAAgAAAAFAAEAACAKAAgAAAAEAAIAACAJAAgAAAAFAAAAADAGAAgAAAAFAAAAADAFAAgAAAAFAAEAACAEAAgAAAAEAAIAACADAAgAAAAEAAIAACACAAgAAAAFAAEAACABAAgAAAAFAAEAACAAAAcAAAAFAAEAAEAAAAYAAAAEAAIAAEA=")
+tile_set = SubResource("TileSet_6egnj")
