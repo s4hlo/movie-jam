@@ -13,8 +13,8 @@ const BLINK_INTERVAL := 0.08
 # Começa em -1.0 pois o sprite original olha para a esquerda
 var last_horizontal_dir: float = -1.0
 
-var max_life: float = 100.0
-var current_life: float = 100.0
+var max_life: float = 10.0
+var current_life: float = 10.0
 var is_invincible: bool = false
 var knockback := Vector2.ZERO
 

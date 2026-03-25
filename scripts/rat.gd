@@ -9,7 +9,7 @@ const KNOCKBACK_FRICTION := 0.85
 const DAMAGE_COOLDOWN := 0.5
 
 var health: int = 20
-var damage: int = 5
+var damage: int = 1
 var knockback := Vector2.ZERO
 
 var current_state: State = State.IDLE
