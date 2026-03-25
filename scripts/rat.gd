@@ -21,6 +21,7 @@ var can_damage := true
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var sprite: Sprite2D = $Sprite
 @onready var damage_timer: Timer = Timer.new()
+@onready var hurt_area: Area2D = $HurtArea
 
 func _ready() -> void:
 	detection_area.body_entered.connect(_on_detection_area_body_entered)
@@ -55,6 +56,7 @@ func die() -> void:
 		return
 	current_state = State.DEAD
 	set_physics_process(false)
+	hurt_area.queue_free()
 	anim.stop()
 	sprite.frame = 22
 	await get_tree().create_timer(0.5).timeout

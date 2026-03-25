@@ -3,7 +3,7 @@ extends CharacterBody2D
 const SPEED := 300.0
 const KNOCKBACK_FORCE := 500.0
 const KNOCKBACK_FRICTION := 0.85
-const INVINCIBILITY_DURATION := 1.0
+const INVINCIBILITY_DURATION := 0.5
 const BLINK_INTERVAL := 0.08
 
 # Referências aos nós

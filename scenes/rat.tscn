@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cmi3b1xhjmk65" path="res://scripts/rat.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://dg36uyxlcpvqn" path="res://assets/Mouse_Enemy.png" id="2"]
+
 [sub_resource type="Shader" id="Shader_hit"]
 code = "shader_type canvas_item;
 uniform bool hit = false;
@@ -100,6 +101,7 @@ _data = {
 }
 
 [node name="Rat" type="CharacterBody2D" unique_id=1403311976]
+motion_mode = 1
 script = ExtResource("1")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=204698671]
