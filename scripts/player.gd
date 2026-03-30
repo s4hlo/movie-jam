@@ -9,6 +9,7 @@ const BLINK_INTERVAL := 0.08
 # Referências aos nós
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var sprite: Sprite2D = $Sprite
+@onready var hurtsounds: AudioStreamPlayer2D = $hurtsounds
 
 # Começa em -1.0 pois o sprite original olha para a esquerda
 var last_horizontal_dir: float = -1.0
@@ -48,6 +49,7 @@ func _physics_process(_delta: float) -> void:
 	if input != Vector2.ZERO:
 		# Se houver qualquer movimento, executa a animação de andar
 		anim.play("walk")
+		
 	else:
 		# Se estiver parado, executa a animação idle
 		anim.play("idle")
@@ -55,6 +57,19 @@ func _physics_process(_delta: float) -> void:
 func take_damage(amount: float, knock_dir := Vector2.ZERO):
 	if is_invincible:
 		return
+	var randfile:int = randi_range(1, 4)
+	match randfile:
+		1:
+			hurtsounds.set_stream(load("res://assets/soundfx/cathurt1.wav"))
+		2:
+			hurtsounds.set_stream(load("res://assets/soundfx/cathurt2.wav"))
+		3:
+			hurtsounds.set_stream(load("res://assets/soundfx/cathurt3.wav"))
+		4:
+			hurtsounds.set_stream(load("res://assets/soundfx/cathurt4.wav"))
+	hurtsounds.volume_db = randf_range(-5.0, -1.0)
+	hurtsounds.pitch_scale = randf_range(1.5, 0.8)
+	hurtsounds.play()
 	current_life -= amount
 	current_life = clamp(current_life, 0.0, max_life)
 	knockback = knock_dir * KNOCKBACK_FORCE

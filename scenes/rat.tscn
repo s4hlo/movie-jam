@@ -25,7 +25,7 @@ shader_parameter/hit = false
 radius = 20.0
 
 [sub_resource type="CircleShape2D" id="detection_shape"]
-radius = 200.0
+radius = 427.00116
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1l88y"]
 
@@ -130,6 +130,14 @@ shape = SubResource("RectangleShape2D_1l88y")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1827585988]
 libraries/ = SubResource("AnimationLibrary_rat")
 
+[node name="chitter" type="AudioStreamPlayer2D" parent="." unique_id=1987172440]
+max_distance = 5000.0
+
+[node name="chittertimer" type="Timer" parent="." unique_id=2055037112]
+wait_time = 3.0
+autostart = true
+
 [connection signal="area_entered" from="HurtArea" to="." method="_on_hurt_area_area_entered"]
 [connection signal="body_entered" from="HurtArea" to="." method="_on_hurt_area_body_entered"]
 [connection signal="body_exited" from="HurtArea" to="." method="_on_hurt_area_body_exited"]
+[connection signal="timeout" from="chittertimer" to="." method="_on_chittertimer_timeout"]

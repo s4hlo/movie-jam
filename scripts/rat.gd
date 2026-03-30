@@ -15,15 +15,20 @@ var knockback := Vector2.ZERO
 var current_state: State = State.IDLE
 var target: Node2D = null
 var player_in_hurt_area: Node2D = null
-var can_damage := true
+var can_damage :bool= true
+var randfile:int = 0
 
 @onready var detection_area: Area2D = $DetectionArea
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var sprite: Sprite2D = $Sprite
 @onready var damage_timer: Timer = Timer.new()
 @onready var hurt_area: Area2D = $HurtArea
+@onready var chitter: AudioStreamPlayer2D = $chitter
+@onready var chittertimer: Timer = $chittertimer
 
 func _ready() -> void:
+	chittertimer.start(randf_range(0, 3.0))
+	chittertimer.wait_time = 3.0
 	detection_area.body_entered.connect(_on_detection_area_body_entered)
 	damage_timer.wait_time = DAMAGE_COOLDOWN
 	damage_timer.one_shot = true
@@ -74,6 +79,7 @@ func flash_hit() -> void:
 
 func _on_hurt_area_area_entered(area: Area2D) -> void:
 	if area.is_in_group("bullets"):
+		makeratnoise(1.0, 3.0)
 		var knock_dir = area.transform.x.normalized()
 		knockback = knock_dir * KNOCKBACK_FORCE
 		health -= area.damage
@@ -101,3 +107,26 @@ func _on_hurt_area_body_entered(body: Node2D) -> void:
 func _on_hurt_area_body_exited(body: Node2D) -> void:
 	if body == player_in_hurt_area:
 		player_in_hurt_area = null
+
+
+func _on_chittertimer_timeout() -> void:
+	makeratnoise(-15.0, 0.5)
+
+func makeratnoise(volmin:float, volmax:float):
+	randfile = randi_range(1, 6)
+	match randfile:
+		1: 
+			chitter.set_stream(load("res://assets/soundfx/rat1.wav"))
+		2: 
+			chitter.set_stream(load("res://assets/soundfx/rat2.wav"))
+		3: 
+			chitter.set_stream(load("res://assets/soundfx/rat3.wav"))
+		4: 
+			chitter.set_stream(load("res://assets/soundfx/rat4.wav"))
+		5: 
+			chitter.set_stream(load("res://assets/soundfx/rat5.wav"))
+		6:
+			chitter.set_stream(load("res://assets/soundfx/rat6.wav"))
+	chitter.volume_db = randf_range(-15.0, 0.0)
+	chitter.pitch_scale = randf_range(0.8, 1.5)
+	chitter.play()
