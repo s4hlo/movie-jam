@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkpippk7nfg6v"]
+
+[ext_resource type="Texture2D" uid="uid://bn5qkkmjmnad2" path="res://assets/AtlasTextures/broken_skate.tres" id="1_ooj52"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="BrokenSkate" type="Sprite2D" parent="."]
+scale = Vector2(5, 5)
+texture = ExtResource("1_ooj52")

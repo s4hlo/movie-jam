@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://df7j8p75ferou"]
+
+[ext_resource type="Script" uid="uid://kxxx6ckc2imp" path="res://scripts/rat_skate.gd" id="1_21btu"]
+[ext_resource type="Texture2D" uid="uid://dg36uyxlcpvqn" path="res://assets/Mouse_Enemy.png" id="2_yney0"]
+
+[sub_resource type="Shader" id="Shader_hit"]
+code = "shader_type canvas_item;
+uniform bool hit = false;
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+	if (hit) {
+		COLOR = vec4(1.0, 1.0, 1.0, tex.a);
+	} else {
+		COLOR = tex;
+	}
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hit"]
+resource_local_to_scene = true
+shader = SubResource("Shader_hit")
+shader_parameter/hit = false
+
+[sub_resource type="CircleShape2D" id="body_shape"]
+radius = 20.0
+
+[sub_resource type="CircleShape2D" id="detection_shape"]
+radius = 817.2056
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1l88y"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_21btu"]
+
+[node name="Rat_skate" type="CharacterBody2D" unique_id=1495913750]
+motion_mode = 1
+script = ExtResource("1_21btu")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=294239884]
+material = SubResource("ShaderMaterial_hit")
+scale = Vector2(5, 5)
+texture = ExtResource("2_yney0")
+hframes = 8
+vframes = 3
+frame = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=130392500]
+shape = SubResource("body_shape")
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=402640591]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=385133841]
+shape = SubResource("detection_shape")
+
+[node name="HurtArea" type="Area2D" parent="." unique_id=1397122165]
+scale = Vector2(2.442675, 2.6444042)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea" unique_id=1098991410]
+scale = Vector2(0.99999994, 1)
+shape = SubResource("RectangleShape2D_1l88y")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1692492699]
+libraries/ = SubResource("AnimationLibrary_21btu")
+
+[node name="chitter" type="AudioStreamPlayer2D" parent="." unique_id=248756511]
+max_distance = 5000.0
+
+[node name="chittertimer" type="Timer" parent="." unique_id=1002886882]
+wait_time = 3.0
+autostart = true
+
+[connection signal="area_entered" from="HurtArea" to="." method="_on_hurt_area_area_entered"]
+[connection signal="body_entered" from="HurtArea" to="." method="_on_hurt_area_body_entered"]
+[connection signal="body_exited" from="HurtArea" to="." method="_on_hurt_area_body_exited"]
+[connection signal="timeout" from="chittertimer" to="." method="_on_chittertimer_timeout"]

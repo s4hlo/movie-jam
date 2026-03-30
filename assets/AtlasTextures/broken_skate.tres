@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://bn5qkkmjmnad2"]
+
+[ext_resource type="Texture2D" uid="uid://dg36uyxlcpvqn" path="res://assets/Mouse_Enemy.png" id="1_p8mu2"]
+
+[resource]
+atlas = ExtResource("1_p8mu2")
+region = Rect2(113, 23, 14, 3)
