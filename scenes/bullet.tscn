@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://hqf1qp04gb20" path="res://assets/Cat_Gun.png" id="1_mkf8s"]
 [ext_resource type="Script" uid="uid://ddiitam1uvkdq" path="res://scripts/bullet.gd" id="1_y25gk"]
+[ext_resource type="AudioStream" uid="uid://qybs4bmap6as" path="res://assets/soundfx/gun1.wav" id="3_l5glv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y25gk"]
 atlas = ExtResource("1_mkf8s")
@@ -25,5 +26,9 @@ rect = Rect2(-64, -64, 128, 128)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=806493837]
 position = Vector2(6, -1.5)
 shape = SubResource("RectangleShape2D_y25gk")
+
+[node name="SomDisparo" type="AudioStreamPlayer2D" parent="." unique_id=1812446976]
+stream = ExtResource("3_l5glv")
+pitch_scale = 0.8
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
