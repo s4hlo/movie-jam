@@ -7,7 +7,6 @@ var damage: int = 10
 @onready var som_disparo: AudioStreamPlayer2D = $SomDisparo
 
 func _ready() -> void:
-	# O som toca assim que a bala "nasce"
 	som_disparo.play()
 
 func _process(delta: float) -> void:
