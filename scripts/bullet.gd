@@ -13,4 +13,7 @@ func _process(delta: float) -> void:
 	position += transform.x * SPEED * delta
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	self.visible = false
+	$CollisionShape2D.queue_free()
+	await som_disparo.finished
 	queue_free()
