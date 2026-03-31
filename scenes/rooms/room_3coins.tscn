@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://1lov5r6rxbbk" path="res://scenes/coin.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://c2r5sc8nwsh3a" path="res://assets/tilemap_moviejam.png" id="2_pc00p"]
 [ext_resource type="PackedScene" uid="uid://df7j8p75ferou" path="res://scenes/rat_skate.tscn" id="4_pc00p"]
+[ext_resource type="PackedScene" uid="uid://ofxolt87xd57" path="res://scenes/rat.tscn" id="5_rat"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ymi18"]
 texture = ExtResource("2_pc00p")
@@ -154,3 +155,9 @@ position = Vector2(220, 551)
 
 [node name="Rat_skate3" parent="." instance=ExtResource("4_pc00p")]
 position = Vector2(1159, 358)
+
+[node name="Rat1" parent="." instance=ExtResource("5_rat")]
+position = Vector2(800, 200)
+
+[node name="Rat2" parent="." instance=ExtResource("5_rat")]
+position = Vector2(500, 500)
