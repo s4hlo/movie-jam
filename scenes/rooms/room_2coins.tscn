@@ -148,3 +148,9 @@ position = Vector2(300, 200)
 
 [node name="Rat2" parent="." unique_id=1644735377 instance=ExtResource("3")]
 position = Vector2(980, 520)
+
+[node name="Rat3" parent="." instance=ExtResource("3")]
+position = Vector2(640, 400)
+
+[node name="Rat4" parent="." instance=ExtResource("3")]
+position = Vector2(500, 600)
