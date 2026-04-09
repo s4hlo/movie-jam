@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://1lov5r6rxbbk" path="res://scenes/coin.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://c2r5sc8nwsh3a" path="res://assets/tilemap_moviejam.png" id="2_3avaq"]
 [ext_resource type="PackedScene" uid="uid://ofxolt87xd57" path="res://scenes/rat.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://msgvnu810trp" path="res://scenes/box.tscn" id="5_qi5y0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qi5y0"]
 texture = ExtResource("2_3avaq")
@@ -132,25 +133,133 @@ offset_right = 10.0
 offset_bottom = 150.0
 color = Color(0.35, 0.35, 0.4, 1)
 
+[node name="box17" parent="." unique_id=1523035874 instance=ExtResource("5_qi5y0")]
+position = Vector2(1240, 200)
+
+[node name="box18" parent="." unique_id=813359553 instance=ExtResource("5_qi5y0")]
+position = Vector2(1240, 520)
+
+[node name="box19" parent="." unique_id=749062698 instance=ExtResource("5_qi5y0")]
+position = Vector2(1160, 200)
+
+[node name="box20" parent="." unique_id=736178554 instance=ExtResource("5_qi5y0")]
+position = Vector2(1160, 520)
+
+[node name="box21" parent="." unique_id=215472922 instance=ExtResource("5_qi5y0")]
+position = Vector2(1080, 200)
+
+[node name="box22" parent="." unique_id=789444643 instance=ExtResource("5_qi5y0")]
+position = Vector2(1080, 520)
+
+[node name="box23" parent="." unique_id=224941601 instance=ExtResource("5_qi5y0")]
+position = Vector2(1000, 200)
+
+[node name="box24" parent="." unique_id=733420308 instance=ExtResource("5_qi5y0")]
+position = Vector2(1000, 520)
+
+[node name="box25" parent="." unique_id=230969729 instance=ExtResource("5_qi5y0")]
+position = Vector2(920, 200)
+
+[node name="box26" parent="." unique_id=829402052 instance=ExtResource("5_qi5y0")]
+position = Vector2(920, 520)
+
+[node name="box27" parent="." unique_id=286726152 instance=ExtResource("5_qi5y0")]
+position = Vector2(840, 200)
+
+[node name="box28" parent="." unique_id=992510783 instance=ExtResource("5_qi5y0")]
+position = Vector2(840, 520)
+
+[node name="box29" parent="." unique_id=1107406677 instance=ExtResource("5_qi5y0")]
+position = Vector2(760, 200)
+
+[node name="box30" parent="." unique_id=804711930 instance=ExtResource("5_qi5y0")]
+position = Vector2(760, 520)
+
+[node name="box31" parent="." unique_id=655206839 instance=ExtResource("5_qi5y0")]
+position = Vector2(680, 200)
+
+[node name="box32" parent="." unique_id=1776785007 instance=ExtResource("5_qi5y0")]
+position = Vector2(680, 520)
+
+[node name="box9" parent="." unique_id=1898650601 instance=ExtResource("5_qi5y0")]
+position = Vector2(600, 200)
+
+[node name="box10" parent="." unique_id=1733224601 instance=ExtResource("5_qi5y0")]
+position = Vector2(600, 520)
+
+[node name="box11" parent="." unique_id=722783099 instance=ExtResource("5_qi5y0")]
+position = Vector2(520, 200)
+
+[node name="box12" parent="." unique_id=416239756 instance=ExtResource("5_qi5y0")]
+position = Vector2(520, 520)
+
+[node name="box13" parent="." unique_id=642633776 instance=ExtResource("5_qi5y0")]
+position = Vector2(440, 200)
+
+[node name="box14" parent="." unique_id=547323801 instance=ExtResource("5_qi5y0")]
+position = Vector2(440, 520)
+
+[node name="box15" parent="." unique_id=1260801494 instance=ExtResource("5_qi5y0")]
+position = Vector2(360, 200)
+
+[node name="box16" parent="." unique_id=1533605976 instance=ExtResource("5_qi5y0")]
+position = Vector2(360, 520)
+
+[node name="box5" parent="." unique_id=1996797539 instance=ExtResource("5_qi5y0")]
+position = Vector2(280, 200)
+
+[node name="box6" parent="." unique_id=1484751228 instance=ExtResource("5_qi5y0")]
+position = Vector2(280, 520)
+
+[node name="box7" parent="." unique_id=15667429 instance=ExtResource("5_qi5y0")]
+position = Vector2(200, 200)
+
+[node name="box8" parent="." unique_id=1943090333 instance=ExtResource("5_qi5y0")]
+position = Vector2(200, 520)
+
+[node name="box3" parent="." unique_id=917258638 instance=ExtResource("5_qi5y0")]
+position = Vector2(120, 200)
+
+[node name="box4" parent="." unique_id=1869573200 instance=ExtResource("5_qi5y0")]
+position = Vector2(120, 520)
+
+[node name="box" parent="." unique_id=380435928 instance=ExtResource("5_qi5y0")]
+position = Vector2(40, 200)
+
+[node name="box2" parent="." unique_id=113180859 instance=ExtResource("5_qi5y0")]
+position = Vector2(40, 520)
+
 [node name="Walls" type="TileMapLayer" parent="." unique_id=1542993738]
+visible = false
+visibility_layer = 5
 scale = Vector2(5, 5)
 tile_map_data = PackedByteArray("AAAPAAAAAAAFAAIAAAAAAAAAAAAFAAIAAGAAAAgAAAAFAAIAADAPAAgAAAAFAAIAAFABAAAAAAAEAAIAAAACAAAAAAAFAAEAAAADAAAAAAAFAAAAAAAEAAAAAAAFAAEAABAFAAAAAAAFAAAAAAAGAAAAAAAFAAEAAAAHAAAAAAAEAAIAAAAIAAAAAAAFAAAAAAAJAAAAAAAEAAIAAAAKAAAAAAAFAAAAAAALAAAAAAAFAAEAAAAMAAAAAAAFAAAAAAANAAAAAAAEAAIAAAAOAAAAAAAFAAEAAAABAAgAAAAEAAIAACACAAgAAAAFAAEAACADAAgAAAAFAAAAACAEAAgAAAAEAAIAACAFAAgAAAAFAAEAADAGAAgAAAAFAAEAACAHAAgAAAAFAAAAACAIAAgAAAAFAAAAACAJAAgAAAAFAAAAACAKAAgAAAAEAAIAACALAAgAAAAFAAAAACAMAAgAAAAFAAEAACANAAgAAAAFAAAAACAOAAgAAAAEAAIAACAPAAcAAAAEAAIAAHAPAAYAAAAFAAEAAFAPAAIAAAAEAAIAAFAPAAEAAAAFAAEAAFAAAAcAAAAFAAEAAEAAAAYAAAAEAAIAAGAAAAIAAAAFAAEAAEAAAAEAAAAEAAIAAEAAAAMAAAAFAAMAAGAAAAUAAAAFAAMAAEAPAAUAAAAFAAMAAFAPAAMAAAAFAAMAAHA=")
 tile_set = SubResource("TileSet_wda1u")
 
 [node name="Coin1" parent="." unique_id=1730047392 instance=ExtResource("2")]
-position = Vector2(400, 360)
+position = Vector2(400, 96)
 
 [node name="Coin2" parent="." unique_id=1986764512 instance=ExtResource("2")]
-position = Vector2(880, 360)
+position = Vector2(880, 98)
 
 [node name="Rat1" parent="." unique_id=936791139 instance=ExtResource("3")]
+visible = false
 position = Vector2(300, 200)
 
 [node name="Rat2" parent="." unique_id=1644735377 instance=ExtResource("3")]
+visible = false
 position = Vector2(980, 520)
 
-[node name="Rat3" parent="." instance=ExtResource("3")]
+[node name="Rat3" parent="." unique_id=1518448390 instance=ExtResource("3")]
+visible = false
 position = Vector2(640, 400)
 
-[node name="Rat4" parent="." instance=ExtResource("3")]
+[node name="Rat4" parent="." unique_id=1719689436 instance=ExtResource("3")]
+visible = false
 position = Vector2(500, 600)
+
+[node name="Coin3" parent="." unique_id=447594233 instance=ExtResource("2")]
+position = Vector2(400, 631)
+
+[node name="Coin4" parent="." unique_id=1095035753 instance=ExtResource("2")]
+position = Vector2(880, 633)

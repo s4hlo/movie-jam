@@ -79,6 +79,11 @@ shoot={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="everything else"
+2d_physics/layer_2="bullets"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

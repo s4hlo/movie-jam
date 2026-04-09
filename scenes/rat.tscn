@@ -25,7 +25,7 @@ shader_parameter/hit = false
 radius = 20.0
 
 [sub_resource type="CircleShape2D" id="detection_shape"]
-radius = 427.00116
+radius = 240.01875
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1l88y"]
 
