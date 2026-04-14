@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cidy2tjoicxci" path="res://assets/HP_Bar.png" id="2_oo0fn"]
 [ext_resource type="Texture2D" uid="uid://b2khmb262m4kj" path="res://assets/AtlasTextures/hp_under_yellow.tres" id="3_5pdws"]
 [ext_resource type="Texture2D" uid="uid://dmgq3g4gt2hgi" path="res://assets/AtlasTextures/hp_under_red.tres" id="3_6fi6k"]
+[ext_resource type="PackedScene" path="res://scenes/minimap.tscn" id="minimap_1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_047uy"]
 atlas = ExtResource("2_oo0fn")
@@ -38,3 +39,9 @@ texture_over = SubResource("AtlasTexture_5pdws")
 texture_progress = ExtResource("2_047uy")
 texture_progress_offset = Vector2(2, 2)
 tint_under = Color(0, 0, 0, 1)
+
+[node name="Minimap" parent="." instance=ExtResource("minimap_1")]
+offset_left = 1120.0
+offset_top = 10.0
+offset_right = 1270.0
+offset_bottom = 160.0
