@@ -2,7 +2,7 @@ extends Control
 
 func _ready() -> void:
 	$VBox/Start.grab_focus()
-	$VBox/CoinLabel.text = "Coins: " + str(SaveManager.coins)
+	$VBox/CoinLabel.text = "Rats killed: " + str(SaveManager.rats_killed)
 
 func _on_start_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/main.tscn")

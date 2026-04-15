@@ -67,6 +67,7 @@ func die() -> void:
 	anim.stop()
 	sprite.frame = 22
 	state_changed.emit("destroyed")
+	SaveManager.add_rat_kill()
 	await get_tree().create_timer(0.5).timeout
 	queue_free()
 

@@ -50,6 +50,7 @@ func _ready() -> void:
 
 func start_new_run(p_player: CharacterBody2D) -> void:
 	player = p_player
+	SaveManager.reset_run()
 	grid.clear()
 	_rooms_since_shop = 0
 	current_position = Vector2i.ZERO

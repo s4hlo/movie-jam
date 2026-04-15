@@ -1,10 +1,12 @@
 extends Node
 
 signal coins_changed(new_total: int)
+signal rats_killed_changed(new_total: int)
 
 const SAVE_PATH := "user://save.json"
 
 var coins: int = 0
+var rats_killed: int = 0
 
 func _ready() -> void:
 	load_game()
@@ -18,10 +20,19 @@ func add_coins(amount: int) -> void:
 	coins += amount
 	coins_changed.emit(coins)
 
+func add_rat_kill() -> void:
+	rats_killed += 1
+	rats_killed_changed.emit(rats_killed)
+	save_game()
+
+func reset_run() -> void:
+	coins = 0
+	coins_changed.emit(coins)
+
 func save_game() -> void:
 	var file := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	if file:
-		file.store_string(JSON.stringify({"coins": coins}))
+		file.store_string(JSON.stringify({"rats_killed": rats_killed}))
 
 func load_game() -> void:
 	if not FileAccess.file_exists(SAVE_PATH):
@@ -31,4 +42,4 @@ func load_game() -> void:
 		return
 	var data = JSON.parse_string(file.get_as_text())
 	if data is Dictionary:
-		coins = int(data.get("coins", 0))
+		rats_killed = int(data.get("rats_killed", 0))
