@@ -7,6 +7,7 @@ const ROOM_SCENES := {
 	"1coin": preload("res://scenes/rooms/room_1coin.tscn"),
 	"2coins": preload("res://scenes/rooms/room_2coins.tscn"),
 	"3coins": preload("res://scenes/rooms/room_3coins.tscn"),
+	"shop": preload("res://scenes/rooms/room_shop.tscn"),
 }
 
 var _exits_cache: Dictionary = {}  # type_name -> Array[String]
@@ -39,6 +40,7 @@ var current_position: Vector2i = Vector2i.ZERO
 var current_room: Node2D = null
 var player: CharacterBody2D = null
 var _transitioning: bool = false
+var _rooms_since_shop: int = 0
 
 func _ready() -> void:
 	for type_name in ROOM_SCENES:
@@ -49,6 +51,7 @@ func _ready() -> void:
 func start_new_run(p_player: CharacterBody2D) -> void:
 	player = p_player
 	grid.clear()
+	_rooms_since_shop = 0
 	current_position = Vector2i.ZERO
 	grid[current_position] = {"type": "empty", "entity_states": {}}
 	_load_room(current_position)
@@ -107,13 +110,29 @@ func _generate_room(pos: Vector2i, from_direction: String) -> void:
 	var compatible: Array[String] = []
 
 	for type_name in ROOM_SCENES:
+		if type_name == "shop":
+			continue
 		var exits: Array = _exits_cache[type_name]
 		if entry_direction in exits:
 			compatible.append(type_name)
 
+	# Shop has all 4 exits so it's always compatible
+	# Force shop after 4+ rooms without one, otherwise 20% chance
+	if _rooms_since_shop >= 4:
+		grid[pos] = {"type": "shop", "entity_states": {}}
+		_rooms_since_shop = 0
+		return
+	elif randf() < 0.2:
+		compatible.append("shop")
+
 	assert(compatible.size() > 0, "No compatible room for direction: " + entry_direction)
 	var chosen: String = compatible[randi() % compatible.size()]
 	grid[pos] = {"type": chosen, "entity_states": {}}
+
+	if chosen == "shop":
+		_rooms_since_shop = 0
+	else:
+		_rooms_since_shop += 1
 
 func _on_door_entered(direction: String) -> void:
 	if _transitioning:

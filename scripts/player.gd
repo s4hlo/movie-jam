@@ -18,6 +18,8 @@ var max_life: float = 10.0
 var current_life: float = 10.0
 var is_invincible: bool = false
 var knockback := Vector2.ZERO
+var active_items: Dictionary = {}
+var speed_multiplier: float = 1.0
 
 func _ready() -> void:
 	get_tree().call_group("Interface", "update_life", current_life, max_life)
@@ -38,7 +40,7 @@ func _physics_process(_delta: float) -> void:
 		last_horizontal_dir = -1.0
 		
 	# Movimentação e Física
-	velocity = input.normalized() * SPEED + knockback
+	velocity = input.normalized() * SPEED * speed_multiplier + knockback
 	knockback *= KNOCKBACK_FRICTION
 	if knockback.length() < 5.0:
 		knockback = Vector2.ZERO
