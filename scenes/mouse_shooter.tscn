@@ -130,15 +130,15 @@ shape = SubResource("RectangleShape2D_1l88y")
 
 [node name="EnemyGun" type="Node2D" parent="."]
 visible = false
-position = Vector2(0, 20)
+position = Vector2(0, 26)
 
 [node name="Sprite2D" type="Sprite2D" parent="EnemyGun"]
-position = Vector2(5, -12)
-scale = Vector2(5, 5)
+position = Vector2(5, -13)
+scale = Vector2(-5, 5)
 texture = ExtResource("3_egun")
 
 [node name="Marker2D" type="Marker2D" parent="EnemyGun"]
-position = Vector2(25, -8)
+position = Vector2(25, -9)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries/ = SubResource("AnimationLibrary_mouse")
