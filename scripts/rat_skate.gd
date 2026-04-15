@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 const BROKEN_SKATE_SCENE = preload("res://scenes/broken_skate.tscn")
 
+signal state_changed(new_state: String)
+
 enum State { IDLE, CHASING, DEAD }
 enum Status { RAT, RAT_SKATE }
 
@@ -89,6 +91,7 @@ func die() -> void:
 	hurt_area.queue_free()
 	anim.stop()
 	sprite.frame = 22
+	state_changed.emit("destroyed")
 	await get_tree().create_timer(0.5).timeout
 	queue_free()
 

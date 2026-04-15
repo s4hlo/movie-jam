@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal state_changed(new_state: String)
+
 enum State { IDLE, CHASING, DEAD }
 
 const SPEED := 150.0
@@ -64,6 +66,7 @@ func die() -> void:
 	hurt_area.queue_free()
 	anim.stop()
 	sprite.frame = 22
+	state_changed.emit("destroyed")
 	await get_tree().create_timer(0.5).timeout
 	queue_free()
 
