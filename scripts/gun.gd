@@ -1,7 +1,9 @@
 extends Node2D
 
 const BULLET = preload("res://scenes/bullet.tscn")
+const FIRE_RATE := 0.25
 @onready var muzzle: Marker2D = $Marker2D
+var _shoot_cooldown := 0.0
 
 func _process(delta: float) -> void:
 	look_at(get_global_mouse_position())
@@ -12,7 +14,11 @@ func _process(delta: float) -> void:
 	else:
 		scale.y = 1
 
-	if Input.is_action_just_pressed("shoot"):
+	if _shoot_cooldown > 0.0:
+		_shoot_cooldown -= delta
+
+	if Input.is_action_pressed("shoot") and _shoot_cooldown <= 0.0:
+		_shoot_cooldown = FIRE_RATE
 		_spawn_bullet(0.0)
 		if get_parent().active_items.has("triple_shot"):
 			_spawn_bullet(deg_to_rad(15.0))

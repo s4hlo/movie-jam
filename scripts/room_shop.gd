@@ -3,8 +3,8 @@ extends "res://scripts/room_base.gd"
 const SHOP_ITEMS := {
 	"triple_shot": {"name": "Triple Shot", "price": 8},
 	"speed_boost": {"name": "Speed Boost", "price": 6},
-	"heal_small": {"name": "Bandagem", "price": 5},
-	"heal_big": {"name": "Kit Medico", "price": 15},
+	"heal_small": {"name": "Bandage", "price": 5},
+	"heal_big": {"name": "Medkit", "price": 15},
 }
 
 @onready var pedestal1: Area2D = $ShopPedestal1
