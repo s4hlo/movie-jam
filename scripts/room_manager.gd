@@ -140,6 +140,7 @@ func _on_door_entered(direction: String) -> void:
 		return
 		
 	get_tree().call_group("bullets", "queue_free")
+	get_tree().call_group("enemy_bullets", "queue_free")
 	_transitioning = true
 
 	var target_pos: Vector2i = current_position + DIRECTION_OFFSETS[direction]

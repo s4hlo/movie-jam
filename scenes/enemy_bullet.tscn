@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://d1js50ujndx2f"]
+
+[ext_resource type="Script" path="res://scripts/enemy_bullet.gd" id="1_ebull"]
+[ext_resource type="Texture2D" path="res://assets/enemy_bullet.png" id="2_ebull"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ebull"]
+size = Vector2(20, 15)
+
+[node name="EnemyBullet" type="Area2D" groups=["enemy_bullets"]]
+script = ExtResource("1_ebull")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("2_ebull")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-64, -64, 128, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(6, -1.5)
+shape = SubResource("RectangleShape2D_ebull")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
