@@ -40,7 +40,7 @@ size = Vector2(580, 20)
 [sub_resource type="RectangleShape2D" id="v_seg"]
 size = Vector2(20, 300)
 
-[node name="Room" type="Node2D" unique_id=1024354261]
+[node name="Room2" type="Node2D" unique_id=1024354261]
 script = ExtResource("1")
 
 [node name="Floor" type="TileMapLayer" parent="." unique_id=172613941]
@@ -165,11 +165,11 @@ scale = Vector2(5, 5)
 tile_map_data = PackedByteArray("AAAPAAAAAAAFAAIAAAAAAAAAAAAFAAIAAGAAAAgAAAAFAAIAADAPAAgAAAAFAAIAAFAOAAAAAAAFAAEAAAANAAAAAAAEAAIAABAMAAAAAAAFAAAAAAALAAAAAAAFAAEAAAAKAAAAAAAEAAIAABAJAAAAAAAFAAEAAAAGAAAAAAAFAAAAAAAFAAAAAAAFAAEAAAAEAAAAAAAEAAIAABADAAAAAAAFAAAAAAACAAAAAAAEAAIAABABAAAAAAAFAAEAAAAAAAEAAAAEAAIAAEAAAAIAAAAFAAEAAEAAAAMAAAAFAAMAAGAAAAUAAAAFAAMAAEAPAAUAAAAFAAMAAFAPAAMAAAAFAAMAAHAPAAIAAAAEAAIAAFAPAAEAAAAFAAEAAFAPAAYAAAAFAAEAAFAPAAcAAAAEAAIAAHAOAAgAAAAFAAEAACANAAgAAAAEAAIAACAMAAgAAAAFAAAAADALAAgAAAAFAAEAACAKAAgAAAAEAAIAACAJAAgAAAAFAAAAADAGAAgAAAAFAAAAADAFAAgAAAAFAAEAACAEAAgAAAAEAAIAACADAAgAAAAEAAIAACACAAgAAAAFAAEAACABAAgAAAAFAAEAACAAAAcAAAAFAAEAAEAAAAYAAAAEAAIAAEA=")
 tile_set = SubResource("TileSet_6egnj")
 
-[node name="Rat1" parent="." instance=ExtResource("3_rat")]
-position = Vector2(350, 300)
+[node name="Rat1" parent="." unique_id=1716173294 instance=ExtResource("3_rat")]
+position = Vector2(286, 268)
 
-[node name="Rat2" parent="." instance=ExtResource("3_rat")]
-position = Vector2(900, 450)
+[node name="Rat2" parent="." unique_id=47149031 instance=ExtResource("3_rat")]
+position = Vector2(981, 449)
 
-[node name="MouseShooter1" parent="." instance=ExtResource("6_mouse")]
-position = Vector2(640, 200)
+[node name="MouseShooter1" parent="." unique_id=1300983753 instance=ExtResource("6_mouse")]
+position = Vector2(644, 342)

@@ -69,7 +69,7 @@ func take_damage(amount: float, knock_dir := Vector2.ZERO):
 			hurtsounds.set_stream(load("res://assets/soundfx/cathurt3.wav"))
 		4:
 			hurtsounds.set_stream(load("res://assets/soundfx/cathurt4.wav"))
-	hurtsounds.volume_db = randf_range(-5.0, -1.0)
+	hurtsounds.volume_db = randf_range(-7.0, -12.0)
 	hurtsounds.pitch_scale = randf_range(1.5, 0.8)
 	hurtsounds.play()
 	current_life -= amount

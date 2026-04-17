@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c2r5sc8nwsh3a" path="res://assets/tilemap_moviejam.png" id="2_3avaq"]
 [ext_resource type="PackedScene" uid="uid://ofxolt87xd57" path="res://scenes/rat.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://msgvnu810trp" path="res://scenes/box.tscn" id="5_qi5y0"]
-[ext_resource type="PackedScene" path="res://scenes/mouse_shooter.tscn" id="6_mouse"]
+[ext_resource type="PackedScene" uid="uid://c2fpye07foftj" path="res://scenes/mouse_shooter.tscn" id="6_mouse"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qi5y0"]
 texture = ExtResource("2_3avaq")
@@ -134,12 +134,6 @@ offset_right = 10.0
 offset_bottom = 150.0
 color = Color(0.35, 0.35, 0.4, 1)
 
-[node name="box17" parent="." unique_id=1523035874 instance=ExtResource("5_qi5y0")]
-position = Vector2(1240, 200)
-
-[node name="box18" parent="." unique_id=813359553 instance=ExtResource("5_qi5y0")]
-position = Vector2(1240, 520)
-
 [node name="box19" parent="." unique_id=749062698 instance=ExtResource("5_qi5y0")]
 position = Vector2(1160, 200)
 
@@ -224,19 +218,6 @@ position = Vector2(120, 200)
 [node name="box4" parent="." unique_id=1869573200 instance=ExtResource("5_qi5y0")]
 position = Vector2(120, 520)
 
-[node name="box" parent="." unique_id=380435928 instance=ExtResource("5_qi5y0")]
-position = Vector2(40, 200)
-
-[node name="box2" parent="." unique_id=113180859 instance=ExtResource("5_qi5y0")]
-position = Vector2(40, 520)
-
-[node name="Walls" type="TileMapLayer" parent="." unique_id=1542993738]
-visible = false
-visibility_layer = 5
-scale = Vector2(5, 5)
-tile_map_data = PackedByteArray("AAAPAAAAAAAFAAIAAAAAAAAAAAAFAAIAAGAAAAgAAAAFAAIAADAPAAgAAAAFAAIAAFABAAAAAAAEAAIAAAACAAAAAAAFAAEAAAADAAAAAAAFAAAAAAAEAAAAAAAFAAEAABAFAAAAAAAFAAAAAAAGAAAAAAAFAAEAAAAHAAAAAAAEAAIAAAAIAAAAAAAFAAAAAAAJAAAAAAAEAAIAAAAKAAAAAAAFAAAAAAALAAAAAAAFAAEAAAAMAAAAAAAFAAAAAAANAAAAAAAEAAIAAAAOAAAAAAAFAAEAAAABAAgAAAAEAAIAACACAAgAAAAFAAEAACADAAgAAAAFAAAAACAEAAgAAAAEAAIAACAFAAgAAAAFAAEAADAGAAgAAAAFAAEAACAHAAgAAAAFAAAAACAIAAgAAAAFAAAAACAJAAgAAAAFAAAAACAKAAgAAAAEAAIAACALAAgAAAAFAAAAACAMAAgAAAAFAAEAACANAAgAAAAFAAAAACAOAAgAAAAEAAIAACAPAAcAAAAEAAIAAHAPAAYAAAAFAAEAAFAPAAIAAAAEAAIAAFAPAAEAAAAFAAEAAFAAAAcAAAAFAAEAAEAAAAYAAAAEAAIAAGAAAAIAAAAFAAEAAEAAAAEAAAAEAAIAAEAAAAMAAAAFAAMAAGAAAAUAAAAFAAMAAEAPAAUAAAAFAAMAAFAPAAMAAAAFAAMAAHA=")
-tile_set = SubResource("TileSet_wda1u")
-
 [node name="Coin1" parent="." unique_id=1730047392 instance=ExtResource("2")]
 position = Vector2(400, 96)
 
@@ -244,22 +225,28 @@ position = Vector2(400, 96)
 position = Vector2(880, 98)
 
 [node name="Rat1" parent="." unique_id=936791139 instance=ExtResource("3")]
-position = Vector2(300, 200)
+position = Vector2(268, 113)
 
 [node name="Rat2" parent="." unique_id=1644735377 instance=ExtResource("3")]
-position = Vector2(980, 520)
+position = Vector2(945, 623)
 
 [node name="Rat3" parent="." unique_id=1518448390 instance=ExtResource("3")]
-position = Vector2(640, 400)
+position = Vector2(573, 381)
 
 [node name="Rat4" parent="." unique_id=1719689436 instance=ExtResource("3")]
-position = Vector2(500, 600)
+position = Vector2(375, 611)
 
-[node name="MouseShooter1" parent="." instance=ExtResource("6_mouse")]
-position = Vector2(640, 200)
+[node name="MouseShooter1" parent="." unique_id=518625719 instance=ExtResource("6_mouse")]
+position = Vector2(641, 106)
 
 [node name="Coin3" parent="." unique_id=447594233 instance=ExtResource("2")]
 position = Vector2(400, 631)
 
 [node name="Coin4" parent="." unique_id=1095035753 instance=ExtResource("2")]
 position = Vector2(880, 633)
+
+[node name="Walls" type="TileMapLayer" parent="." unique_id=1542993738]
+visibility_layer = 5
+scale = Vector2(5, 5)
+tile_map_data = PackedByteArray("AAAPAAAAAAAFAAIAAAAAAAAAAAAFAAIAAGAAAAgAAAAFAAIAADAPAAgAAAAFAAIAAFABAAAAAAAEAAIAAAACAAAAAAAFAAEAAAADAAAAAAAFAAAAAAAEAAAAAAAFAAEAABAFAAAAAAAFAAAAAAAGAAAAAAAFAAEAAAAHAAAAAAAEAAIAAAAIAAAAAAAFAAAAAAAJAAAAAAAEAAIAAAAKAAAAAAAFAAAAAAALAAAAAAAFAAEAAAAMAAAAAAAFAAAAAAANAAAAAAAEAAIAAAAOAAAAAAAFAAEAAAABAAgAAAAEAAIAACACAAgAAAAFAAEAACADAAgAAAAFAAAAACAEAAgAAAAEAAIAACAFAAgAAAAFAAEAADAGAAgAAAAFAAEAACAHAAgAAAAFAAAAACAIAAgAAAAFAAAAACAJAAgAAAAFAAAAACAKAAgAAAAEAAIAACALAAgAAAAFAAAAACAMAAgAAAAFAAEAACANAAgAAAAFAAAAACAOAAgAAAAEAAIAACAPAAcAAAAEAAIAAHAPAAYAAAAFAAEAAFAPAAIAAAAEAAIAAFAPAAEAAAAFAAEAAFAAAAcAAAAFAAEAAEAAAAYAAAAEAAIAAGAAAAIAAAAFAAEAAEAAAAEAAAAEAAIAAEAAAAMAAAAFAAMAAGAAAAUAAAAFAAMAAEAPAAUAAAAFAAMAAFAPAAMAAAAFAAMAAHA=")
+tile_set = SubResource("TileSet_wda1u")
