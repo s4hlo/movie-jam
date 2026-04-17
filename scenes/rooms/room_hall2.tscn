@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://c2r5sc8nwsh3a" path="res://assets/tilemap_moviejam.png" id="2_xb52e"]
 [ext_resource type="PackedScene" uid="uid://msgvnu810trp" path="res://scenes/box.tscn" id="3_fd4me"]
 [ext_resource type="PackedScene" uid="uid://1lov5r6rxbbk" path="res://scenes/coin.tscn" id="4_5jvil"]
-[ext_resource type="PackedScene" uid="uid://ofxolt87xd57" path="res://scenes/rat.tscn" id="5_jc5ya"]
 [ext_resource type="PackedScene" path="res://scenes/mouse_shooter.tscn" id="6_n78mw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qi5y0"]
@@ -243,20 +242,17 @@ position = Vector2(400, 96)
 [node name="Coin2" parent="." unique_id=1986764512 instance=ExtResource("4_5jvil")]
 position = Vector2(880, 98)
 
-[node name="Rat1" parent="." unique_id=936791139 instance=ExtResource("5_jc5ya")]
-position = Vector2(300, 200)
+[node name="MouseShooter3" parent="." unique_id=927231165 instance=ExtResource("6_n78mw")]
+position = Vector2(959, 75)
 
-[node name="Rat2" parent="." unique_id=1644735377 instance=ExtResource("5_jc5ya")]
-position = Vector2(980, 520)
+[node name="MouseShooter4" parent="." unique_id=1283833229 instance=ExtResource("6_n78mw")]
+position = Vector2(988, 633)
 
-[node name="Rat3" parent="." unique_id=1518448390 instance=ExtResource("5_jc5ya")]
-position = Vector2(640, 400)
+[node name="MouseShooter1" parent="." unique_id=721915749 instance=ExtResource("6_n78mw")]
+position = Vector2(350, 74)
 
-[node name="Rat4" parent="." unique_id=1719689436 instance=ExtResource("5_jc5ya")]
-position = Vector2(500, 600)
-
-[node name="MouseShooter1" parent="." instance=ExtResource("6_n78mw")]
-position = Vector2(640, 200)
+[node name="MouseShooter2" parent="." unique_id=731560948 instance=ExtResource("6_n78mw")]
+position = Vector2(379, 632)
 
 [node name="Coin3" parent="." unique_id=447594233 instance=ExtResource("4_5jvil")]
 position = Vector2(400, 631)
