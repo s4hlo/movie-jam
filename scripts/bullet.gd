@@ -7,6 +7,7 @@ var damage: int = 10
 @onready var som_disparo: AudioStreamPlayer2D = $SomDisparo
 
 func _ready() -> void:
+	som_disparo.volume_db = randf_range(-5.0, -8.0)
 	som_disparo.play()
 
 func _process(delta: float) -> void:

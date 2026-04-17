@@ -9,6 +9,7 @@ var _shoot_cooldown_time := 0.0
 
 @onready var gun: Node2D = $EnemyGun
 @onready var muzzle: Marker2D = $EnemyGun/Marker2D
+var mousedelay:bool = false
 
 func _physics_process(delta: float) -> void:
 	match current_state:
@@ -17,25 +18,26 @@ func _physics_process(delta: float) -> void:
 			anim.play("idle")
 			gun.visible = false
 		State.CHASING:
-			if target:
-				var dir = global_position.direction_to(target.global_position)
-				var dist = global_position.distance_to(target.global_position)
-				sprite.flip_h = dir.x > 0
-				_aim_gun_at(target.global_position)
-				if dist <= SHOOT_RANGE:
+			if mousedelay == true:
+				if target:
+					var dir = global_position.direction_to(target.global_position)
+					var dist = global_position.distance_to(target.global_position)
+					sprite.flip_h = dir.x > 0
+					_aim_gun_at(target.global_position)
+					if dist <= SHOOT_RANGE:
+						velocity = Vector2.ZERO
+						anim.play("idle")
+						_shoot_cooldown_time -= delta
+						if _shoot_cooldown_time <= 0.0:
+							_shoot()
+							_shoot_cooldown_time = SHOOT_COOLDOWN
+					else:
+						velocity = dir * SPEED
+						anim.play("walk")
+				else:
 					velocity = Vector2.ZERO
 					anim.play("idle")
-					_shoot_cooldown_time -= delta
-					if _shoot_cooldown_time <= 0.0:
-						_shoot()
-						_shoot_cooldown_time = SHOOT_COOLDOWN
-				else:
-					velocity = dir * SPEED
-					anim.play("walk")
-			else:
-				velocity = Vector2.ZERO
-				anim.play("idle")
-				gun.visible = false
+					gun.visible = false
 		State.DEAD:
 			velocity = Vector2.ZERO
 			gun.visible = false
@@ -74,3 +76,7 @@ func die() -> void:
 	SaveManager.add_rat_kill()
 	await get_tree().create_timer(0.5).timeout
 	queue_free()
+
+
+func _on_timer_timeout() -> void:
+	mousedelay == true

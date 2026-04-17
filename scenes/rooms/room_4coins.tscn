@@ -1,0 +1,245 @@
+[gd_scene format=4 uid="uid://bnilcb273015m"]
+
+[ext_resource type="Script" uid="uid://dndlb34yra7rn" path="res://scripts/room_base.gd" id="1_jh2a6"]
+[ext_resource type="Texture2D" uid="uid://c2r5sc8nwsh3a" path="res://assets/tilemap_moviejam.png" id="2_ixp5b"]
+[ext_resource type="PackedScene" uid="uid://msgvnu810trp" path="res://scenes/box.tscn" id="3_ixp5b"]
+[ext_resource type="PackedScene" uid="uid://1lov5r6rxbbk" path="res://scenes/coin.tscn" id="3_kfua8"]
+[ext_resource type="PackedScene" uid="uid://df7j8p75ferou" path="res://scenes/rat_skate.tscn" id="4_kshap"]
+[ext_resource type="PackedScene" uid="uid://ofxolt87xd57" path="res://scenes/rat.tscn" id="5_cnkcc"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ymi18"]
+texture = ExtResource("2_ixp5b")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_bdb8h"]
+sources/0 = SubResource("TileSetAtlasSource_ymi18")
+
+[sub_resource type="RectangleShape2D" id="h_seg"]
+size = Vector2(580, 20)
+
+[sub_resource type="RectangleShape2D" id="v_full"]
+size = Vector2(20, 720)
+
+[node name="Room" type="Node2D" unique_id=580505011]
+script = ExtResource("1_jh2a6")
+
+[node name="Floor" type="TileMapLayer" parent="." unique_id=196752921]
+scale = Vector2(5, 5)
+tile_map_data = PackedByteArray("AAAAAAAAAAABAAEAAAAAAAEAAAABAAEAAAAAAAIAAAABAAEAAAAAAAMAAAABAAEAAAAAAAQAAAABAAEAAAAAAAUAAAABAAEAAAAAAAYAAAABAAEAAAAAAAcAAAABAAEAAAAAAAgAAAABAAEAAAABAAAAAAABAAEAAAABAAEAAAABAAEAAAABAAIAAAABAAEAAAABAAMAAAABAAEAAAABAAQAAAABAAEAAAABAAUAAAABAAEAAAABAAYAAAABAAEAAAABAAcAAAABAAEAAAABAAgAAAABAAEAAAACAAAAAAABAAEAAAACAAEAAAABAAEAAAACAAIAAAABAAEAAAACAAMAAAABAAEAAAACAAQAAAABAAEAAAACAAUAAAABAAEAAAACAAYAAAABAAEAAAACAAcAAAABAAEAAAACAAgAAAABAAEAAAADAAAAAAABAAEAAAADAAEAAAABAAEAAAADAAIAAAABAAEAAAADAAMAAAABAAEAAAADAAQAAAABAAEAAAADAAUAAAABAAEAAAADAAYAAAABAAEAAAADAAcAAAABAAEAAAADAAgAAAABAAEAAAAEAAAAAAABAAEAAAAEAAEAAAABAAEAAAAEAAIAAAABAAEAAAAEAAMAAAABAAEAAAAEAAQAAAABAAEAAAAEAAUAAAABAAEAAAAEAAYAAAABAAEAAAAEAAcAAAABAAEAAAAEAAgAAAABAAEAAAAFAAAAAAABAAEAAAAFAAEAAAABAAEAAAAFAAIAAAABAAEAAAAFAAMAAAABAAEAAAAFAAQAAAABAAEAAAAFAAUAAAABAAEAAAAFAAYAAAABAAEAAAAFAAcAAAABAAEAAAAFAAgAAAABAAEAAAAGAAAAAAABAAEAAAAGAAEAAAABAAEAAAAGAAIAAAABAAEAAAAGAAMAAAABAAEAAAAGAAQAAAABAAEAAAAGAAUAAAABAAEAAAAGAAYAAAABAAEAAAAGAAcAAAABAAEAAAAGAAgAAAABAAEAAAAHAAAAAAABAAEAAAAHAAEAAAABAAEAAAAHAAIAAAABAAEAAAAHAAMAAAABAAEAAAAHAAQAAAABAAEAAAAHAAUAAAABAAEAAAAHAAYAAAABAAEAAAAHAAcAAAABAAEAAAAHAAgAAAABAAEAAAAIAAAAAAABAAEAAAAIAAEAAAABAAEAAAAIAAIAAAABAAEAAAAIAAMAAAABAAEAAAAIAAQAAAABAAEAAAAIAAUAAAABAAEAAAAIAAYAAAABAAEAAAAIAAcAAAABAAEAAAAIAAgAAAABAAEAAAAJAAAAAAABAAEAAAAJAAEAAAABAAEAAAAJAAIAAAABAAEAAAAJAAMAAAABAAEAAAAJAAQAAAABAAEAAAAJAAUAAAABAAEAAAAJAAYAAAABAAEAAAAJAAcAAAABAAEAAAAJAAgAAAABAAEAAAAKAAAAAAABAAEAAAAKAAEAAAABAAEAAAAKAAIAAAABAAEAAAAKAAMAAAABAAEAAAAKAAQAAAABAAEAAAAKAAUAAAABAAEAAAAKAAYAAAABAAEAAAAKAAcAAAABAAEAAAAKAAgAAAABAAEAAAALAAAAAAABAAEAAAALAAEAAAABAAEAAAALAAIAAAABAAEAAAALAAMAAAABAAEAAAALAAQAAAABAAEAAAALAAUAAAABAAEAAAALAAYAAAABAAEAAAALAAcAAAABAAEAAAALAAgAAAABAAEAAAAMAAAAAAABAAEAAAAMAAEAAAABAAEAAAAMAAIAAAABAAEAAAAMAAMAAAABAAEAAAAMAAQAAAABAAEAAAAMAAUAAAABAAEAAAAMAAYAAAABAAEAAAAMAAcAAAABAAEAAAAMAAgAAAABAAEAAAANAAAAAAABAAEAAAANAAEAAAABAAEAAAANAAIAAAABAAEAAAANAAMAAAABAAEAAAANAAQAAAABAAEAAAANAAUAAAABAAEAAAANAAYAAAABAAEAAAANAAcAAAABAAEAAAANAAgAAAABAAEAAAAOAAAAAAABAAEAAAAOAAEAAAABAAEAAAAOAAIAAAABAAEAAAAOAAMAAAABAAEAAAAOAAQAAAABAAEAAAAOAAUAAAABAAEAAAAOAAYAAAABAAEAAAAOAAcAAAABAAEAAAAOAAgAAAABAAEAAAAPAAAAAAABAAEAAAAPAAEAAAABAAEAAAAPAAIAAAABAAEAAAAPAAMAAAABAAEAAAAPAAQAAAABAAEAAAAPAAUAAAABAAEAAAAPAAYAAAABAAEAAAAPAAcAAAABAAEAAAAPAAgAAAABAAEAAAA=")
+tile_set = SubResource("TileSet_bdb8h")
+
+[node name="WallNorthLeft" type="StaticBody2D" parent="." unique_id=1526217246]
+position = Vector2(290, 10)
+
+[node name="Collision" type="CollisionShape2D" parent="WallNorthLeft" unique_id=137615918]
+shape = SubResource("h_seg")
+
+[node name="Visual" type="ColorRect" parent="WallNorthLeft" unique_id=1654733290]
+visible = false
+offset_left = -290.0
+offset_top = -10.0
+offset_right = 290.0
+offset_bottom = 10.0
+color = Color(0.35, 0.35, 0.4, 1)
+
+[node name="WallNorthRight" type="StaticBody2D" parent="." unique_id=881498194]
+position = Vector2(990, 10)
+
+[node name="Collision" type="CollisionShape2D" parent="WallNorthRight" unique_id=1641891489]
+shape = SubResource("h_seg")
+
+[node name="Visual" type="ColorRect" parent="WallNorthRight" unique_id=942046359]
+visible = false
+offset_left = -290.0
+offset_top = -10.0
+offset_right = 290.0
+offset_bottom = 10.0
+color = Color(0.35, 0.35, 0.4, 1)
+
+[node name="WallSouthLeft" type="StaticBody2D" parent="." unique_id=807847669]
+position = Vector2(290, 710)
+
+[node name="Collision" type="CollisionShape2D" parent="WallSouthLeft" unique_id=1528014289]
+shape = SubResource("h_seg")
+
+[node name="Visual" type="ColorRect" parent="WallSouthLeft" unique_id=1350118928]
+visible = false
+offset_left = -290.0
+offset_top = -10.0
+offset_right = 290.0
+offset_bottom = 10.0
+color = Color(0.35, 0.35, 0.4, 1)
+
+[node name="WallSouthRight" type="StaticBody2D" parent="." unique_id=698542685]
+position = Vector2(990, 710)
+
+[node name="Collision" type="CollisionShape2D" parent="WallSouthRight" unique_id=1906630051]
+shape = SubResource("h_seg")
+
+[node name="Visual" type="ColorRect" parent="WallSouthRight" unique_id=1207825722]
+visible = false
+offset_left = -290.0
+offset_top = -10.0
+offset_right = 290.0
+offset_bottom = 10.0
+color = Color(0.35, 0.35, 0.4, 1)
+
+[node name="WallEast" type="StaticBody2D" parent="." unique_id=414982847]
+position = Vector2(1270, 360)
+
+[node name="Collision" type="CollisionShape2D" parent="WallEast" unique_id=1447788438]
+shape = SubResource("v_full")
+
+[node name="Visual" type="ColorRect" parent="WallEast" unique_id=622893302]
+visible = false
+offset_left = -10.0
+offset_top = -360.0
+offset_right = 10.0
+offset_bottom = 360.0
+color = Color(0.35, 0.35, 0.4, 1)
+
+[node name="WallWest" type="StaticBody2D" parent="." unique_id=72514288]
+position = Vector2(10, 360)
+
+[node name="Collision" type="CollisionShape2D" parent="WallWest" unique_id=1471618206]
+shape = SubResource("v_full")
+
+[node name="Visual" type="ColorRect" parent="WallWest" unique_id=1129514828]
+visible = false
+offset_left = -10.0
+offset_top = -360.0
+offset_right = 10.0
+offset_bottom = 360.0
+color = Color(0.35, 0.35, 0.4, 1)
+
+[node name="Walls" type="TileMapLayer" parent="." unique_id=633673929]
+scale = Vector2(5, 5)
+tile_map_data = PackedByteArray("AAAPAAAAAAAFAAIAAAAAAAAAAAAFAAIAAGAAAAgAAAAFAAIAADAPAAgAAAAFAAIAAFABAAAAAAAEAAIAAAACAAAAAAAFAAEAABADAAAAAAAFAAAAAAAEAAAAAAAFAAAAAAAFAAAAAAAFAAEAABAGAAAAAAAEAAIAAAAJAAAAAAAFAAAAAAAKAAAAAAAFAAEAABALAAAAAAAEAAIAAAAMAAAAAAAFAAEAABANAAAAAAAFAAAAAAAOAAAAAAAEAAIAAAAPAAEAAAAFAAEAAFAPAAIAAAAEAAIAAHAPAAMAAAAFAAAAAFAPAAQAAAAEAAIAAFAPAAUAAAAFAAEAAFAPAAYAAAAEAAIAAHAPAAcAAAAFAAEAAFAOAAgAAAAFAAEAADANAAgAAAAEAAIAADAMAAgAAAAFAAEAADALAAgAAAAFAAAAADAKAAgAAAAEAAIAADAJAAgAAAAFAAEAADAGAAgAAAAEAAIAADAFAAgAAAAFAAEAADAEAAgAAAAFAAAAADADAAgAAAAEAAIAADACAAgAAAAFAAEAADABAAgAAAAEAAIAACAAAAcAAAAEAAIAAGAAAAYAAAAFAAAAAEAAAAUAAAAFAAEAAEAAAAQAAAAEAAIAAGAAAAMAAAAFAAAAAEAAAAIAAAAFAAEAAEAAAAEAAAAEAAIAAGA=")
+tile_set = SubResource("TileSet_bdb8h")
+
+[node name="box2" parent="." unique_id=1523035874 instance=ExtResource("3_ixp5b")]
+position = Vector2(878, 293)
+
+[node name="box3" parent="." unique_id=636581383 instance=ExtResource("3_ixp5b")]
+position = Vector2(878, 453)
+
+[node name="box4" parent="." unique_id=308379745 instance=ExtResource("3_ixp5b")]
+position = Vector2(878, 373)
+
+[node name="box" parent="." unique_id=33422430 instance=ExtResource("3_ixp5b")]
+position = Vector2(878, 213)
+
+[node name="box2" parent="box" unique_id=104583652 instance=ExtResource("3_ixp5b")]
+position = Vector2(-80, 80)
+
+[node name="box3" parent="box" unique_id=562039117 instance=ExtResource("3_ixp5b")]
+position = Vector2(-80, 240)
+
+[node name="box4" parent="box" unique_id=1605926057 instance=ExtResource("3_ixp5b")]
+position = Vector2(-80, 160)
+
+[node name="box" parent="box" unique_id=1438480691 instance=ExtResource("3_ixp5b")]
+position = Vector2(-80, 0)
+
+[node name="box2" parent="box/box" unique_id=1532619282 instance=ExtResource("3_ixp5b")]
+position = Vector2(-80, 80)
+
+[node name="box3" parent="box/box" unique_id=1706065748 instance=ExtResource("3_ixp5b")]
+position = Vector2(-80, 240)
+
+[node name="box4" parent="box/box" unique_id=1751582844 instance=ExtResource("3_ixp5b")]
+position = Vector2(-80, 160)
+
+[node name="box" parent="box/box" unique_id=1687030478 instance=ExtResource("3_ixp5b")]
+position = Vector2(-80, 0)
+
+[node name="box2" parent="box/box/box" unique_id=1779987561 instance=ExtResource("3_ixp5b")]
+position = Vector2(-80, 80)
+
+[node name="box3" parent="box/box/box" unique_id=1864516142 instance=ExtResource("3_ixp5b")]
+position = Vector2(-80, 240)
+
+[node name="box4" parent="box/box/box" unique_id=768477181 instance=ExtResource("3_ixp5b")]
+position = Vector2(-80, 160)
+
+[node name="box" parent="box/box/box" unique_id=2111432846 instance=ExtResource("3_ixp5b")]
+position = Vector2(-80, 0)
+
+[node name="box2" parent="box/box/box/box" unique_id=614651014 instance=ExtResource("3_ixp5b")]
+position = Vector2(-80, 80)
+
+[node name="box3" parent="box/box/box/box" unique_id=1194450932 instance=ExtResource("3_ixp5b")]
+position = Vector2(-80, 240)
+
+[node name="box4" parent="box/box/box/box" unique_id=1238752552 instance=ExtResource("3_ixp5b")]
+position = Vector2(-80, 160)
+
+[node name="box" parent="box/box/box/box" unique_id=2051129553 instance=ExtResource("3_ixp5b")]
+position = Vector2(-80, 0)
+
+[node name="box2" parent="box/box/box/box/box" unique_id=749426913 instance=ExtResource("3_ixp5b")]
+position = Vector2(-80, 80)
+
+[node name="box3" parent="box/box/box/box/box" unique_id=619631902 instance=ExtResource("3_ixp5b")]
+position = Vector2(-80, 240)
+
+[node name="box4" parent="box/box/box/box/box" unique_id=109836635 instance=ExtResource("3_ixp5b")]
+position = Vector2(-80, 160)
+
+[node name="box" parent="box/box/box/box/box" unique_id=230646412 instance=ExtResource("3_ixp5b")]
+position = Vector2(-80, 0)
+
+[node name="box2" parent="box/box/box/box/box/box" unique_id=710921578 instance=ExtResource("3_ixp5b")]
+position = Vector2(-80, 80)
+
+[node name="box3" parent="box/box/box/box/box/box" unique_id=1174897159 instance=ExtResource("3_ixp5b")]
+position = Vector2(-80, 240)
+
+[node name="box4" parent="box/box/box/box/box/box" unique_id=1995111046 instance=ExtResource("3_ixp5b")]
+position = Vector2(-80, 160)
+
+[node name="box" parent="box/box/box/box/box/box" unique_id=1316727373 instance=ExtResource("3_ixp5b")]
+position = Vector2(-80, 0)
+
+[node name="Coin3" parent="." unique_id=130788930 instance=ExtResource("3_kfua8")]
+position = Vector2(196, 323)
+
+[node name="Coin3" parent="Coin3" unique_id=447594233 instance=ExtResource("3_kfua8")]
+position = Vector2(924, 13)
+
+[node name="Rat_skate" parent="." unique_id=1506037580 instance=ExtResource("4_kshap")]
+position = Vector2(179, 146)
+
+[node name="Rat_skate2" parent="." unique_id=615599621 instance=ExtResource("4_kshap")]
+position = Vector2(251, 582)
+
+[node name="Rat_skate3" parent="." unique_id=1600013066 instance=ExtResource("4_kshap")]
+position = Vector2(1075, 322)
+
+[node name="Rat1" parent="." unique_id=802556578 instance=ExtResource("5_cnkcc")]
+position = Vector2(956, 67)
+
+[node name="Rat2" parent="." unique_id=1490418065 instance=ExtResource("5_cnkcc")]
+position = Vector2(905, 600)
