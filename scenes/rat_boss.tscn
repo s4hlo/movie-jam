@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://ceqxcdxguieua"]
+
+[ext_resource type="Script" uid="uid://glw55gwifg32" path="res://scripts/enemys/rat_boss.gd" id="1_ra5gq"]
+[ext_resource type="Texture2D" uid="uid://nwc0hkjnv284" path="res://icon.svg" id="2_utgo6"]
+
+[sub_resource type="Shader" id="Shader_hit"]
+code = "shader_type canvas_item;
+uniform bool hit = false;
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+	if (hit) {
+		COLOR = vec4(1.0, 1.0, 1.0, tex.a);
+	} else {
+		COLOR = tex;
+	}
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hit"]
+resource_local_to_scene = true
+shader = SubResource("Shader_hit")
+shader_parameter/hit = false
+
+[sub_resource type="CircleShape2D" id="body_shape"]
+radius = 20.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1l88y"]
+
+[node name="Rat_skate" type="CharacterBody2D" unique_id=1495913750]
+motion_mode = 1
+script = ExtResource("1_ra5gq")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=294239884]
+material = SubResource("ShaderMaterial_hit")
+texture = ExtResource("2_utgo6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=130392500]
+shape = SubResource("body_shape")
+
+[node name="HurtArea" type="Area2D" parent="." unique_id=1397122165]
+scale = Vector2(2.442675, 2.6444042)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea" unique_id=1098991410]
+scale = Vector2(0.99999994, 1)
+shape = SubResource("RectangleShape2D_1l88y")
+
+[connection signal="area_entered" from="HurtArea" to="." method="_on_hurt_area_area_entered"]
+[connection signal="body_entered" from="HurtArea" to="." method="_on_hurt_area_body_entered"]
+[connection signal="body_exited" from="HurtArea" to="." method="_on_hurt_area_body_exited"]

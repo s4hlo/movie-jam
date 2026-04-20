@@ -11,6 +11,8 @@ var current_Status = Status.RAT_SKATE
 const SPEED_SKATE := 500.0
 const ONRUSH_COOLDOWN := 1.0
 
+var is_reloading_rush: bool = true 
+
 const SPEED_RAT := 150.0
 const KNOCKBACK_FORCE := 500.0
 const KNOCKBACK_FRICTION := 0.85
@@ -21,12 +23,11 @@ var damage: int = 1
 var knockback := Vector2.ZERO
 var charge_direction := Vector2.ZERO
 
-var current_state: State = State.IDLE
+var current_state: State = State.CHASING
 var target: Node2D = null
 var player_in_hurt_area: Node2D = null
 var can_damage :bool= true
 var randfile:int = 0
-
 
 @onready var detection_area: Area2D = $DetectionArea
 @onready var anim: AnimationPlayer = $AnimationPlayer
@@ -38,9 +39,11 @@ var randfile:int = 0
 @onready var chittertimer: Timer = $chittertimer
 
 func _ready() -> void:
+	target = get_tree().get_first_node_in_group("player")
+	
 	chittertimer.start(randf_range(0, 3.0))
 	chittertimer.wait_time = 3.0
-	detection_area.body_entered.connect(_on_detection_area_body_entered)
+	
 	damage_timer.wait_time = DAMAGE_COOLDOWN
 	damage_timer.one_shot = true
 	damage_timer.timeout.connect(_on_damage_timer_timeout)
@@ -50,6 +53,9 @@ func _ready() -> void:
 	charge_timer.one_shot = true
 	charge_timer.timeout.connect(_on_charge_timer_timeout)
 	add_child(charge_timer)
+	
+	if current_Status == Status.RAT_SKATE:
+		charge_timer.start(1)
 
 func _physics_process(_delta: float) -> void:
 	if current_state == State.DEAD:
@@ -58,23 +64,27 @@ func _physics_process(_delta: float) -> void:
 		match current_Status:
 			Status.RAT_SKATE:
 				match current_state:
-					State.IDLE:
-						velocity = Vector2.ZERO
-						anim.play("idle_skate")
 					State.CHASING:
-						velocity = charge_direction * SPEED_SKATE
-						anim.play("walk_skate")
+						if not is_reloading_rush:
+							velocity = charge_direction * SPEED_SKATE
+							#anim.play("rush")
+						else:
+							if target:
+								var dir = global_position.direction_to(target.global_position)
+								velocity = dir * SPEED_RAT
+								sprite.flip_h = dir.x > 0
+								#anim.play("walk")
 			Status.RAT:
 				match current_state:
 					State.IDLE:
 						velocity = Vector2.ZERO
-						anim.play("idle")
+						#anim.play("idle")
 					State.CHASING:
 						if target:
 							var dir = global_position.direction_to(target.global_position)
 							velocity = dir * SPEED_RAT
 							sprite.flip_h = dir.x > 0
-						anim.play("walk")
+						#anim.play("walk")
 	
 	velocity += knockback
 	knockback *= KNOCKBACK_FRICTION
@@ -96,19 +106,11 @@ func die() -> void:
 	await get_tree().create_timer(0.5).timeout
 	queue_free()
 
-func _on_detection_area_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player"):
-		target = body
-		if current_state == State.IDLE:
-			if current_Status == Status.RAT_SKATE:
-				onrush()
-			else:
-				current_state = State.CHASING
-
 func onrush() -> void:
 	if target == null or current_state == State.DEAD or current_Status != Status.RAT_SKATE: 
 		return
 		
+	is_reloading_rush = false
 	current_state = State.CHASING
 	charge_direction = global_position.direction_to(target.global_position)
 	sprite.flip_h = charge_direction.x > 0
@@ -116,7 +118,7 @@ func onrush() -> void:
 	await get_tree().create_timer(0.5).timeout
 
 	if current_state != State.DEAD and current_Status == Status.RAT_SKATE:
-		current_state = State.IDLE
+		is_reloading_rush = true
 		charge_timer.start()
 
 func _on_charge_timer_timeout() -> void:
@@ -146,12 +148,12 @@ func drop_skate() -> void:
 	current_Status = Status.RAT
 	current_state = State.CHASING
 	charge_timer.stop()
+	is_reloading_rush = true
 	
 	var broken_skate = BROKEN_SKATE_SCENE.instantiate()
 	broken_skate.global_position = global_position
 	get_parent().add_child(broken_skate)
 	
-	# quando o rato for apagado da cena, apaga o skate tambem
 	tree_exiting.connect(broken_skate.queue_free)
 
 func try_damage() -> void:
@@ -173,7 +175,6 @@ func _on_hurt_area_body_entered(body: Node2D) -> void:
 func _on_hurt_area_body_exited(body: Node2D) -> void:
 	if body == player_in_hurt_area:
 		player_in_hurt_area = null
-
 
 func _on_chittertimer_timeout() -> void:
 	makeratnoise(-15.0, 0.5)
