@@ -79,4 +79,4 @@ func die() -> void:
 
 
 func _on_timer_timeout() -> void:
-	mousedelay == true
+	mousedelay = true
