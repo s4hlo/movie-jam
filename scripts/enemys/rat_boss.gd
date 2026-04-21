@@ -85,8 +85,7 @@ func start_chasing_sequence() -> void:
 	
 	await get_tree().create_timer(1.5).timeout
 	
-	var angle_rad = deg_to_rad(30.0)
-	pong_direction = Vector2(cos(angle_rad), sin(angle_rad))
+	pong_direction = global_position.direction_to(target.global_position)
 	
 	current_state = State.CHASING
 	is_reloading_rush = false
