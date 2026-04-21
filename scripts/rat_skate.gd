@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 const BROKEN_SKATE_SCENE = preload("res://scenes/broken_skate.tscn")
+const COIN = preload("res://scenes/coin.tscn")
 
 signal state_changed(new_state: String)
 
@@ -105,6 +106,11 @@ func die() -> void:
 	SaveManager.add_rat_kill()
 	await get_tree().create_timer(0.5).timeout
 	queue_free()
+	
+	if randi_range(1, 2) == 1 :
+		var coin = COIN.instantiate()
+		coin.global_position = global_position
+		get_parent().add_child(coin)
 
 func onrush() -> void:
 	if target == null or current_state == State.DEAD or current_Status != Status.RAT_SKATE: 

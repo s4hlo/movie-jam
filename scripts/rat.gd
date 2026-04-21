@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+const COIN = preload("res://scenes/coin.tscn")
+
 signal state_changed(new_state: String)
 
 enum State { IDLE, CHASING, DEAD }
@@ -70,6 +72,11 @@ func die() -> void:
 	SaveManager.add_rat_kill()
 	await get_tree().create_timer(0.5).timeout
 	queue_free()
+	
+	if randi_range(1, 2) == 1 :
+		var coin = COIN.instantiate()
+		coin.global_position = global_position
+		get_parent().add_child(coin)
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):

@@ -18,10 +18,11 @@ const SPEED_RUSH := 400.0
 const KNOCKBACK_FRICTION := 0.85
 var health: int = 200
 var damage: int = 1
+var speed_rush: float
 
 # TEMPOS DE RECARGA
 const DAMAGE_COOLDOWN := 0.5
-const PONG_DURATION := 5.0
+const PONG_DURATION := 8.0
 const RELOAD_DURATION := 3.0
 
 # CONDICIONAIS
@@ -81,6 +82,7 @@ func _ready() -> void:
 func start_chasing_sequence() -> void:
 	current_state = State.IDLE
 	current_Phases = Phases.FIRST
+	speed_rush = SPEED_RUSH
 	# anim.play("idle")
 	
 	await get_tree().create_timer(1.5).timeout
@@ -101,7 +103,7 @@ func _physics_process(_delta: float) -> void:
 		velocity = Vector2.ZERO
 	else:
 		if not is_reloading_rush:
-			velocity = pong_direction * SPEED_RUSH
+			velocity = pong_direction * speed_rush
 			#anim.play("walk")
 		else:
 			if target:
@@ -120,19 +122,22 @@ func _physics_process(_delta: float) -> void:
 				if _shoot_cooldown_time <= 0.0:
 					_shoot()
 					_shoot_cooldown_time = SHOOT_COOLDOWN
-
-	velocity += knockback
-	knockback *= KNOCKBACK_FRICTION
-	if knockback.length() < 5.0:
-		knockback = Vector2.ZERO
+					
+	if is_reloading_rush:
+		velocity += knockback
+		knockback *= KNOCKBACK_FRICTION
+		if knockback.length() < 5.0:
+			knockback = Vector2.ZERO
 
 	move_and_slide()
 	
-	if current_Phases == Phases.FIRST and current_state == State.CHASING and not is_reloading_rush:
+	if current_state == State.CHASING and not is_reloading_rush:
 		if get_slide_collision_count() > 0:
 			var collision = get_slide_collision(0)
 			pong_direction = pong_direction.bounce(collision.get_normal())
 			sprite.flip_h = pong_direction.x > 0
+			
+			speed_rush = min(speed_rush + 50.0, 700.0)
 			
 func _on_pong_timer_timeout() -> void:
 	is_reloading_rush = true
@@ -140,6 +145,8 @@ func _on_pong_timer_timeout() -> void:
 
 func _on_reload_timer_timeout() -> void:
 	is_reloading_rush = false
+	
+	speed_rush = SPEED_RUSH
 	
 	var dir = global_position.direction_to(target.global_position)
 	pong_direction = dir
