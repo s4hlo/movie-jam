@@ -5,19 +5,37 @@ var item_price: int = 0
 var is_purchased: bool = false
 var player_in_range: bool = false
 
+#animação dos itens
+var float_amplitude: float = 4.0 
+var float_speed: float = 3.0     
+var start_y: float = 0.0         
+var time_passed: float = 0.0     
+
 @onready var item_label: Label = $ItemLabel
 @onready var prompt_label: Label = $PromptLabel
-@onready var item_sprite: ColorRect = $ItemSprite
+@onready var item_sprite: Sprite2D = $ItemSprite
 
-func setup(key: String, price: int, display_name: String) -> void:
+func _ready() -> void:
+	# Guarda a posição original do Sprite no eixo Y
+	start_y = item_sprite.position.y
+	
+	# Inicia o tempo num ponto aleatório. (para que os itens não flutuem na mesma posição)
+	time_passed = randf() * PI * 2
+	
+func setup(key: String, price: int, display_name: String, texture: Texture2D) -> void:
 	item_key = key
 	item_price = price
 	item_label.text = display_name + " - " + str(price)
 	prompt_label.visible = false
+	item_sprite.texture = texture
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if player_in_range and not is_purchased and Input.is_action_just_pressed("interact"):
 		_try_purchase()
+	if not is_purchased:
+		time_passed += delta * float_speed
+		# Aplica a onda de seno na posição Y do sprite
+		item_sprite.position.y = start_y + (sin(time_passed) * float_amplitude)
 
 func _try_purchase() -> void:
 	var player = get_tree().get_first_node_in_group("player")

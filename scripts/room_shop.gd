@@ -1,10 +1,11 @@
 extends "res://scripts/room_base.gd"
 
+const SHEET = preload("res://assets/Items.png")
 const SHOP_ITEMS := {
-	"triple_shot": {"name": "Triple Shot", "price": 8},
-	"speed_boost": {"name": "Speed Boost", "price": 6},
-	"heal_small": {"name": "Bandage", "price": 5},
-	"heal_big": {"name": "Medkit", "price": 15},
+	"triple_shot": {"name": "Triple Shot", "price": 8, "rect": Rect2(0, 16, 16, 16)},
+	"speed_boost": {"name": "Speed Boost", "price": 6, "rect": Rect2(0, 32, 16, 16)},
+	"heal_small": {"name": "Fishies", "price": 5, "rect": Rect2(0, 0, 16, 16)},
+	"heal_big": {"name": "Medkit", "price": 15, "rect": Rect2(16, 0, 16, 16)}
 }
 
 @onready var pedestal1: Area2D = $ShopPedestal1
@@ -28,7 +29,13 @@ func _setup_pedestals() -> void:
 		if i < available_keys.size():
 			var key: String = available_keys[i]
 			var item_data: Dictionary = SHOP_ITEMS[key]
-			pedestals[i].setup(key, item_data["price"], item_data["name"])
+			
+			# Criamos o "recorte" da sprite sheet
+			var atlas_tex = AtlasTexture.new()
+			atlas_tex.atlas = SHEET
+			atlas_tex.region = item_data["rect"]
+			
+			pedestals[i].setup(key, item_data["price"], item_data["name"], atlas_tex)
 		else:
 			pedestals[i].visible = false
 			pedestals[i].set_process(false)
