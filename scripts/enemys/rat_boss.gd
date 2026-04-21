@@ -16,7 +16,7 @@ const SPEED_RAT := 150.0
 const KNOCKBACK_FORCE := 500.0
 const SPEED_RUSH := 400.0
 const KNOCKBACK_FRICTION := 0.85
-var health: int = 40
+var health: int = 200
 var damage: int = 1
 
 # TEMPOS DE RECARGA
@@ -27,6 +27,17 @@ const RELOAD_DURATION := 3.0
 # CONDICIONAIS
 var can_damage: bool = true
 var is_reloading_rush: bool = false
+
+# RATO ATIRADOR
+
+const ENEMY_BULLET = preload("res://scenes/enemy_bullet.tscn")
+const SHOOT_RANGE := 350.0
+const SHOOT_COOLDOWN := 1.2
+
+var _shoot_cooldown_time := 2.0
+
+@onready var gun: Node2D = $EnemyGun
+@onready var muzzle: Marker2D = $EnemyGun/Marker2D
 
 # OUTROS
 var knockback := Vector2.ZERO
@@ -48,6 +59,8 @@ var randfile: int = 0
 func _ready() -> void:
 	target = get_tree().get_first_node_in_group("player")
 	
+	gun.visible = false
+	
 	damage_timer.wait_time = DAMAGE_COOLDOWN
 	damage_timer.one_shot = true
 	damage_timer.timeout.connect(_on_damage_timer_timeout)
@@ -67,6 +80,7 @@ func _ready() -> void:
 	
 func start_chasing_sequence() -> void:
 	current_state = State.IDLE
+	current_Phases = Phases.FIRST
 	# anim.play("idle")
 	
 	await get_tree().create_timer(1.5).timeout
@@ -79,25 +93,34 @@ func start_chasing_sequence() -> void:
 	pong_timer.start()
 	
 func _physics_process(_delta: float) -> void:
+	if current_state == State.IDLE:
+		velocity = Vector2.ZERO
+		#anim.play("idle")
+		return
+	
 	if current_state == State.DEAD:
 		velocity = Vector2.ZERO
 	else:
-		match current_Phases:
-			Phases.FIRST:
-				match current_state:
-					State.IDLE:
-						velocity = Vector2.ZERO
-						#anim.play("idle")
-					State.CHASING:
-						if not is_reloading_rush:
-							velocity = pong_direction * SPEED_RUSH
-							#anim.play("walk")
-						else:
-							if target:
-								var dir = global_position.direction_to(target.global_position)
-								velocity = dir * SPEED_RAT
-								sprite.flip_h = dir.x > 0
-							#anim.play("walk_reloading") 
+		if not is_reloading_rush:
+			velocity = pong_direction * SPEED_RUSH
+			#anim.play("walk")
+		else:
+			if target:
+				var dir = global_position.direction_to(target.global_position)
+				velocity = dir * SPEED_RAT
+				sprite.flip_h = dir.x > 0
+				#anim.play("walk_reloading"
+				
+		if Phases.SECOND == current_Phases:
+			if target:
+				var dir = global_position.direction_to(target.global_position)
+				sprite.flip_h = dir.x > 0
+				_aim_gun_at(target.global_position)
+				
+				_shoot_cooldown_time -= _delta
+				if _shoot_cooldown_time <= 0.0:
+					_shoot()
+					_shoot_cooldown_time = SHOOT_COOLDOWN
 
 	velocity += knockback
 	knockback *= KNOCKBACK_FRICTION
@@ -151,6 +174,21 @@ func try_damage() -> void:
 func _on_damage_timer_timeout() -> void:
 	can_damage = true
 	try_damage()
+	
+func _aim_gun_at(target_pos: Vector2) -> void:
+	gun.visible = true
+	gun.look_at(target_pos)
+	var deg = wrapf(rad_to_deg(gun.rotation), 0.0, 360.0)
+	if deg > 90.0 and deg < 270.0:
+		gun.scale.y = -1
+	else:
+		gun.scale.y = 1
+
+func _shoot() -> void:
+	var b = ENEMY_BULLET.instantiate()
+	get_tree().root.add_child(b)
+	b.global_position = muzzle.global_position
+	b.rotation = gun.rotation
 
 #####################################################
 ############ SINAIS ############
@@ -162,9 +200,12 @@ func _on_hurt_area_area_entered(area: Area2D) -> void:
 		health -= area.damage
 		area.queue_free()
 		flash_hit()
-		if health <= 20 and current_Phases == Phases.SECOND:
+		if health <= 100 and current_Phases == Phases.FIRST:
+			current_Phases = Phases.SECOND 
+			# animacao da troca
+			
 			#drop_skate()
-			sprite.frame = 18
+			#sprite.frame = 18
 		if health <= 0:
 			die()
 

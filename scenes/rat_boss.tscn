@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://glw55gwifg32" path="res://scripts/enemys/rat_boss.gd" id="1_ra5gq"]
 [ext_resource type="Texture2D" uid="uid://nwc0hkjnv284" path="res://icon.svg" id="2_utgo6"]
+[ext_resource type="Texture2D" uid="uid://c4trl60p118mm" path="res://assets/enemy_gun.png" id="3_utgo6"]
 
 [sub_resource type="Shader" id="Shader_hit"]
 code = "shader_type canvas_item;
@@ -43,6 +44,18 @@ scale = Vector2(2.442675, 2.6444042)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea" unique_id=1098991410]
 scale = Vector2(0.99999994, 1)
 shape = SubResource("RectangleShape2D_1l88y")
+
+[node name="EnemyGun" type="Node2D" parent="." unique_id=362650060]
+visible = false
+position = Vector2(0, -113)
+
+[node name="Sprite2D" type="Sprite2D" parent="EnemyGun" unique_id=201853938]
+position = Vector2(5, -13)
+scale = Vector2(-5, 5)
+texture = ExtResource("3_utgo6")
+
+[node name="Marker2D" type="Marker2D" parent="EnemyGun" unique_id=556416114]
+position = Vector2(25, -9)
 
 [connection signal="area_entered" from="HurtArea" to="." method="_on_hurt_area_area_entered"]
 [connection signal="body_entered" from="HurtArea" to="." method="_on_hurt_area_body_entered"]
