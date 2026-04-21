@@ -78,13 +78,13 @@ func _physics_process(_delta: float) -> void:
 				match current_state:
 					State.IDLE:
 						velocity = Vector2.ZERO
-						#anim.play("idle")
+						anim.play("idle")
 					State.CHASING:
 						if target:
 							var dir = global_position.direction_to(target.global_position)
 							velocity = dir * SPEED_RAT
 							sprite.flip_h = dir.x > 0
-						#anim.play("walk")
+						anim.play("walk")
 	
 	velocity += knockback
 	knockback *= KNOCKBACK_FRICTION
