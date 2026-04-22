@@ -4,6 +4,7 @@ const ROOM_SIZE := Vector2(1280, 720)
 const WALL_THICKNESS := 20.0
 const DOOR_SIZE := 120.0
 const SEALED_COLOR := Color(0.5, 0.2, 0.2, 1.0)
+const BOSS_DOOR_COLOR := Color(0.85, 0.15, 0.15, 1.0)
 
 # Set by RoomManager before add_child
 var door_config: Dictionary = {}  # "north" → "open"/"sealed"
@@ -41,10 +42,22 @@ func _build_doors() -> void:
 			continue
 		var state: String = door_config.get(direction, "sealed")
 		var geo := _get_door_geometry(direction)
-		if state == "open":
-			_add_door_area(geo.pos, geo.size, direction)
-		else:
-			_add_sealed_wall(geo.pos, geo.size)
+		match state:
+			"open":
+				_add_door_area(geo.pos, geo.size, direction)
+			"boss":
+				_add_door_area(geo.pos, geo.size, direction)
+				_add_door_marker(geo.pos, geo.size, BOSS_DOOR_COLOR)
+			_:
+				_add_sealed_wall(geo.pos, geo.size)
+
+func _add_door_marker(pos: Vector2, size: Vector2, color: Color) -> void:
+	var visual := ColorRect.new()
+	visual.position = pos - size / 2.0
+	visual.size = size
+	visual.color = color
+	visual.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(visual)
 
 func _add_sealed_wall(pos: Vector2, size: Vector2) -> void:
 	var body := StaticBody2D.new()

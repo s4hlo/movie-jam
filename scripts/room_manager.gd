@@ -4,11 +4,18 @@ const RoomBase = preload("res://scripts/room_base.gd")
 
 const ROOM_SCENES := {
 	"empty": preload("res://scenes/rooms/room_empty.tscn"),
+	"empty2": preload("res://scenes/rooms/room_empty2.tscn"),
 	"1coin": preload("res://scenes/rooms/room_1coin.tscn"),
 	"2coins": preload("res://scenes/rooms/room_2coins.tscn"),
 	"3coins": preload("res://scenes/rooms/room_3coins.tscn"),
+	"4coins": preload("res://scenes/rooms/room_4coins.tscn"),
+	"hall2": preload("res://scenes/rooms/room_hall2.tscn"),
+	"hall3": preload("res://scenes/rooms/room_hall3.tscn"),
 	"shop": preload("res://scenes/rooms/room_shop.tscn"),
+	"boss": preload("res://scenes/rooms/room_boss.tscn"),
 }
+
+const ROOMS_BEFORE_BOSS := 8
 
 var _exits_cache: Dictionary = {}  # type_name -> Array[String]
 
@@ -41,6 +48,7 @@ var current_room: Node2D = null
 var player: CharacterBody2D = null
 var _transitioning: bool = false
 var _rooms_since_shop: int = 0
+var _boss_placed: bool = false
 
 func _ready() -> void:
 	for type_name in ROOM_SCENES:
@@ -53,6 +61,7 @@ func start_new_run(p_player: CharacterBody2D) -> void:
 	SaveManager.reset_run()
 	grid.clear()
 	_rooms_since_shop = 0
+	_boss_placed = false
 	current_position = Vector2i.ZERO
 	grid[current_position] = {"type": "empty", "entity_states": {}}
 	_load_room(current_position)
@@ -72,7 +81,10 @@ func _load_room(pos: Vector2i, spawn_at_door: String = "") -> void:
 	# Configure doors based on current grid state
 	var door_config := {}
 	for direction in _exits_cache[type_name]:
-		door_config[direction] = _get_door_state(pos, direction)
+		if type_name == "boss":
+			door_config[direction] = "sealed"
+		else:
+			door_config[direction] = _get_door_state(pos, direction)
 	current_room.door_config = door_config
 	current_room.entity_states = room_data["entity_states"]
 
@@ -101,17 +113,20 @@ func _get_door_state(pos: Vector2i, direction: String) -> String:
 	if not grid.has(neighbor_pos):
 		return "open"
 
-	var neighbor_exits: Array = _exits_cache[grid[neighbor_pos]["type"]]
-	if OPPOSITE[direction] in neighbor_exits:
-		return "open"
-	return "sealed"
+	var neighbor_type: String = grid[neighbor_pos]["type"]
+	var neighbor_exits: Array = _exits_cache[neighbor_type]
+	if not OPPOSITE[direction] in neighbor_exits:
+		return "sealed"
+	if neighbor_type == "boss":
+		return "boss"
+	return "open"
 
 func _generate_room(pos: Vector2i, from_direction: String) -> void:
 	var entry_direction: String = OPPOSITE[from_direction]
 	var compatible: Array[String] = []
 
 	for type_name in ROOM_SCENES:
-		if type_name == "shop":
+		if type_name == "shop" or type_name == "boss":
 			continue
 		var exits: Array = _exits_cache[type_name]
 		if entry_direction in exits:
@@ -122,6 +137,7 @@ func _generate_room(pos: Vector2i, from_direction: String) -> void:
 	if _rooms_since_shop >= 4:
 		grid[pos] = {"type": "shop", "entity_states": {}}
 		_rooms_since_shop = 0
+		_try_place_boss_near(pos)
 		return
 	elif randf() < 0.2:
 		compatible.append("shop")
@@ -134,6 +150,21 @@ func _generate_room(pos: Vector2i, from_direction: String) -> void:
 		_rooms_since_shop = 0
 	else:
 		_rooms_since_shop += 1
+
+	_try_place_boss_near(pos)
+
+func _try_place_boss_near(center_pos: Vector2i) -> void:
+	if _boss_placed:
+		return
+	if grid.size() < ROOMS_BEFORE_BOSS:
+		return
+	var host_type: String = grid[center_pos]["type"]
+	for direction in _exits_cache[host_type]:
+		var neighbor: Vector2i = center_pos + DIRECTION_OFFSETS[direction]
+		if not grid.has(neighbor):
+			grid[neighbor] = {"type": "boss", "entity_states": {}}
+			_boss_placed = true
+			return
 
 func _on_door_entered(direction: String) -> void:
 	if _transitioning:

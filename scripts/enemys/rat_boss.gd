@@ -31,7 +31,7 @@ var is_reloading_rush: bool = false
 
 # RATO ATIRADOR
 
-const ENEMY_BULLET = preload("res://scenes/enemy_bullet.tscn")
+const ENEMY_BULLET = preload("res://scenes/gunshot/enemy_bullet.tscn")
 const SHOOT_RANGE := 350.0
 const SHOOT_COOLDOWN := 1.2
 
