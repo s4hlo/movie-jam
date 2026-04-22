@@ -1,5 +1,7 @@
 extends Area2D
 
+signal state_changed(new_state: String)
+
 var item_key: String = ""
 var item_price: int = 0
 var is_purchased: bool = false
@@ -59,6 +61,7 @@ func _try_purchase() -> void:
 		item_sprite.visible = false
 		item_label.visible = false
 		prompt_label.visible = false
+		state_changed.emit("removed")
 	else:
 		_flash_no_coins()
 

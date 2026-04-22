@@ -18,6 +18,20 @@ func _ready() -> void:
 	_setup_pedestals()
 
 func _setup_pedestals() -> void:
+	var pedestals := [pedestal1, pedestal2, pedestal3]
+
+	var has_stored := false
+	for p in pedestals:
+		if entity_states.has(str(p.name)):
+			has_stored = true
+			break
+
+	if has_stored:
+		_apply_stored_layout(pedestals)
+	else:
+		_generate_fresh_layout(pedestals)
+
+func _generate_fresh_layout(pedestals: Array) -> void:
 	var player = get_tree().get_first_node_in_group("player")
 	var available_keys: Array = []
 	for key in SHOP_ITEMS:
@@ -25,19 +39,41 @@ func _setup_pedestals() -> void:
 			available_keys.append(key)
 	available_keys.shuffle()
 
-	var pedestals := [pedestal1, pedestal2, pedestal3]
-	for i in range(3):
+	for i in range(pedestals.size()):
+		var ped_name: String = str(pedestals[i].name)
 		if i < available_keys.size():
 			var key: String = available_keys[i]
-			var item_data: Dictionary = SHOP_ITEMS[key]
-			
-			# Criamos o "recorte" da sprite sheet
-			var atlas_tex = AtlasTexture.new()
-			atlas_tex.atlas = SHEET
-			atlas_tex.region = item_data["rect"]
-			
-			pedestals[i].setup(key, item_data["price"], item_data["name"], atlas_tex)
+			_configure_pedestal(pedestals[i], key)
+			_changed_entities[ped_name] = "item:" + key
 		else:
-			pedestals[i].visible = false
-			pedestals[i].set_process(false)
-			pedestals[i].get_node("CollisionShape2D").set_deferred("disabled", true)
+			_hide_pedestal(pedestals[i])
+			_changed_entities[ped_name] = "empty"
+
+func _apply_stored_layout(pedestals: Array) -> void:
+	for i in range(pedestals.size()):
+		var pedestal: Area2D = pedestals[i]
+		var state: String = entity_states.get(str(pedestal.name), "")
+		if state.begins_with("item:"):
+			# Pedestal still active: configure with stored item
+			if is_instance_valid(pedestal) and not pedestal.is_queued_for_deletion():
+				_configure_pedestal(pedestal, state.substr(5))
+		else:
+			# "removed" (purchased, already queue_freed by base) or "empty"
+			if is_instance_valid(pedestal) and not pedestal.is_queued_for_deletion():
+				_hide_pedestal(pedestal)
+
+func _configure_pedestal(pedestal: Area2D, key: String) -> void:
+	var item_data: Dictionary = SHOP_ITEMS[key]
+	var atlas_tex = AtlasTexture.new()
+	atlas_tex.atlas = SHEET
+	atlas_tex.region = item_data["rect"]
+	pedestal.setup(key, item_data["price"], item_data["name"], atlas_tex)
+	# Base's _connect_entity_signals skips nodes that already have an entry in
+	# entity_states, so on revisit we wire the signal ourselves.
+	if not pedestal.state_changed.is_connected(_on_entity_state_changed):
+		pedestal.state_changed.connect(_on_entity_state_changed.bind(str(pedestal.name)))
+
+func _hide_pedestal(pedestal: Area2D) -> void:
+	pedestal.visible = false
+	pedestal.set_process(false)
+	pedestal.get_node("CollisionShape2D").set_deferred("disabled", true)
