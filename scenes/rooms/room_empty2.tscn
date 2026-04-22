@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dndlb34yra7rn" path="res://scripts/room_base.gd" id="1_0rcm7"]
 [ext_resource type="Texture2D" uid="uid://c2r5sc8nwsh3a" path="res://assets/tilemap_moviejam.png" id="2_apq2s"]
-[ext_resource type="PackedScene" path="res://scenes/mouse_shooter.tscn" id="4_33nxf"]
+[ext_resource type="PackedScene" uid="uid://c2fpye07foftj" path="res://scenes/enemys/mouse_shooter.tscn" id="4_33nxf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xb5b7"]
 texture = ExtResource("2_apq2s")

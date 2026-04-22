@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://clfy3rgty2ylm"]
 
-[ext_resource type="Script" uid="uid://cb8rgpopbi5y4" path="res://scripts/gun.gd" id="1_og67c"]
-[ext_resource type="Texture2D" uid="uid://hqf1qp04gb20" path="res://assets/Cat_Gun.png" id="2_gp1hk"]
+[ext_resource type="Script" uid="uid://cb8rgpopbi5y4" path="res://scripts/guns/gun.gd" id="1_4ihrc"]
+[ext_resource type="Texture2D" uid="uid://hqf1qp04gb20" path="res://assets/Cat_Gun.png" id="2_q35ia"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_og67c"]
-atlas = ExtResource("2_gp1hk")
+atlas = ExtResource("2_q35ia")
 region = Rect2(1, 4, 9, 11)
 
 [node name="Gun" type="Node2D" unique_id=1674393378]
-script = ExtResource("1_og67c")
+script = ExtResource("1_4ihrc")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1182895366]
 position = Vector2(5, -12)

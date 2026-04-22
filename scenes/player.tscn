@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d21pnxeijv3k2" path="res://scripts/player.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://v5ic1m61ekld" path="res://assets/B_CatSprite.png" id="2_g2els"]
-[ext_resource type="PackedScene" uid="uid://clfy3rgty2ylm" path="res://scenes/gun.tscn" id="3_qhqgy"]
+[ext_resource type="PackedScene" uid="uid://clfy3rgty2ylm" path="res://scenes/guns/gun.tscn" id="3_qhqgy"]
 [ext_resource type="AudioStream" uid="uid://co7ud7545tewu" path="res://assets/soundfx/sewer.mp3" id="4_dqkch"]
 
 [sub_resource type="Shader" id="Shader_hit"]

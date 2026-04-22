@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dy3w2koo6bq0a"]
+
+[ext_resource type="Script" uid="uid://ddiitam1uvkdq" path="res://scripts/gunshot/bullet.gd" id="1_ajqbp"]
+[ext_resource type="Texture2D" uid="uid://dmpwxquobcuig" path="res://assets/Laser/Laser1.png" id="2_1kx2f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y25gk"]
+size = Vector2(20, 15)
+
+[node name="Laser" type="Area2D" unique_id=497716828 groups=["bullets"]]
+script = ExtResource("1_ajqbp")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=793287796]
+position = Vector2(7.999999, 1.0000001)
+rotation = -3.1415927
+scale = Vector2(5, -5)
+texture = ExtResource("2_1kx2f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=806493837]
+position = Vector2(6, -1.5)
+shape = SubResource("RectangleShape2D_y25gk")
+
+[node name="Line2D" type="Line2D" parent="." unique_id=782428576]

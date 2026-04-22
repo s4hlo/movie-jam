@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://c2r5sc8nwsh3a" path="res://assets/tilemap_moviejam.png" id="2_ixp5b"]
 [ext_resource type="PackedScene" uid="uid://msgvnu810trp" path="res://scenes/box.tscn" id="3_ixp5b"]
 [ext_resource type="PackedScene" uid="uid://1lov5r6rxbbk" path="res://scenes/coin.tscn" id="3_kfua8"]
-[ext_resource type="PackedScene" uid="uid://df7j8p75ferou" path="res://scenes/rat_skate.tscn" id="4_kshap"]
-[ext_resource type="PackedScene" uid="uid://ofxolt87xd57" path="res://scenes/rat.tscn" id="5_cnkcc"]
+[ext_resource type="PackedScene" uid="uid://df7j8p75ferou" path="res://scenes/enemys/rat_skate.tscn" id="4_kshap"]
+[ext_resource type="PackedScene" uid="uid://ofxolt87xd57" path="res://scenes/enemys/rat.tscn" id="5_cnkcc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ymi18"]
 texture = ExtResource("2_ixp5b")

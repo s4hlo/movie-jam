@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d1js50ujndx2f"]
 
-[ext_resource type="Script" path="res://scripts/enemy_bullet.gd" id="1_ebull"]
-[ext_resource type="Texture2D" path="res://assets/enemy_bullet.png" id="2_ebull"]
+[ext_resource type="Script" uid="uid://b024fwol301jn" path="res://scripts/gunshot/enemy_bullet.gd" id="1_ebull"]
+[ext_resource type="Texture2D" uid="uid://bnl4lwotupj2r" path="res://assets/enemy_bullet.png" id="2_ebull"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ebull"]
 size = Vector2(20, 15)

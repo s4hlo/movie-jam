@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b7ud3ca4r1urg"]
 
 [ext_resource type="Texture2D" uid="uid://hqf1qp04gb20" path="res://assets/Cat_Gun.png" id="1_mkf8s"]
-[ext_resource type="Script" uid="uid://ddiitam1uvkdq" path="res://scripts/bullet.gd" id="1_y25gk"]
+[ext_resource type="Script" uid="uid://ddiitam1uvkdq" path="res://scripts/gunshot/bullet.gd" id="1_y25gk"]
 [ext_resource type="AudioStream" uid="uid://qybs4bmap6as" path="res://assets/soundfx/gun1.wav" id="3_l5glv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y25gk"]

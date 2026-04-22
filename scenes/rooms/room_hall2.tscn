@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c2r5sc8nwsh3a" path="res://assets/tilemap_moviejam.png" id="2_xb52e"]
 [ext_resource type="PackedScene" uid="uid://msgvnu810trp" path="res://scenes/box.tscn" id="3_fd4me"]
 [ext_resource type="PackedScene" uid="uid://1lov5r6rxbbk" path="res://scenes/coin.tscn" id="4_5jvil"]
-[ext_resource type="PackedScene" uid="uid://c2fpye07foftj" path="res://scenes/mouse_shooter.tscn" id="6_n78mw"]
+[ext_resource type="PackedScene" uid="uid://c2fpye07foftj" path="res://scenes/enemys/mouse_shooter.tscn" id="6_n78mw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qi5y0"]
 texture = ExtResource("2_xb52e")

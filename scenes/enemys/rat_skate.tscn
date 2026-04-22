@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://df7j8p75ferou"]
 
-[ext_resource type="Script" uid="uid://kxxx6ckc2imp" path="res://scripts/rat_skate.gd" id="1_21btu"]
+[ext_resource type="Script" uid="uid://kxxx6ckc2imp" path="res://scripts/enemys/rat_skate.gd" id="1_21btu"]
 [ext_resource type="Texture2D" uid="uid://dg36uyxlcpvqn" path="res://assets/Mouse_Enemy.png" id="2_yney0"]
 
 [sub_resource type="Shader" id="Shader_hit"]

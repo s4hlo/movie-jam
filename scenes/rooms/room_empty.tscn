@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dndlb34yra7rn" path="res://scripts/room_base.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://c2r5sc8nwsh3a" path="res://assets/tilemap_moviejam.png" id="2_ps7y8"]
-[ext_resource type="PackedScene" uid="uid://ofxolt87xd57" path="res://scenes/rat.tscn" id="3_rat"]
-[ext_resource type="PackedScene" path="res://scenes/mouse_shooter.tscn" id="6_mouse"]
+[ext_resource type="PackedScene" uid="uid://ofxolt87xd57" path="res://scenes/enemys/rat.tscn" id="3_rat"]
+[ext_resource type="PackedScene" uid="uid://c2fpye07foftj" path="res://scenes/enemys/mouse_shooter.tscn" id="6_mouse"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xb5b7"]
 texture = ExtResource("2_ps7y8")
