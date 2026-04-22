@@ -94,7 +94,8 @@ func _on_hurt_area_area_entered(area: Area2D) -> void:
 		var knock_dir = area.transform.x.normalized()
 		knockback = knock_dir * KNOCKBACK_FORCE
 		health -= area.damage
-		area.queue_free()
+		if not area.is_in_group("laser"):
+			area.queue_free()
 		flash_hit()
 		if health <= 0:
 			die()

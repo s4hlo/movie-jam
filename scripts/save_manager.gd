@@ -5,7 +5,7 @@ signal rats_killed_changed(new_total: int)
 
 const SAVE_PATH := "user://save.json"
 
-var coins: int = 0
+var coins: int = 100 # TEMP debug start coins
 var rats_killed: int = 0
 
 func _ready() -> void:
@@ -26,7 +26,7 @@ func add_rat_kill() -> void:
 	save_game()
 
 func reset_run() -> void:
-	coins = 0
+	coins = 100 # TEMP debug start coins
 	coins_changed.emit(coins)
 
 func save_game() -> void:

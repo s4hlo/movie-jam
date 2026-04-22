@@ -3,6 +3,7 @@ extends "res://scripts/room_base.gd"
 const SHEET = preload("res://assets/Items.png")
 const SHOP_ITEMS := {
 	"triple_shot": {"name": "Triple Shot", "price": 8, "rect": Rect2(0, 16, 16, 16)},
+	"laser": {"name": "Laser", "price": 10, "rect": Rect2(16, 16, 16, 16)},
 	"speed_boost": {"name": "Speed Boost", "price": 6, "rect": Rect2(0, 32, 16, 16)},
 	"heal_small": {"name": "Fishies", "price": 5, "rect": Rect2(0, 0, 16, 16)},
 	"heal_big": {"name": "Medkit", "price": 15, "rect": Rect2(16, 0, 16, 16)}
