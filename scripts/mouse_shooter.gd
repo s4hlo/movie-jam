@@ -76,7 +76,12 @@ func die() -> void:
 	SaveManager.add_rat_kill()
 	await get_tree().create_timer(0.5).timeout
 	queue_free()
+	
+	if randi_range(1, 2) == 1 :
+		var coin = COIN.instantiate()
+		coin.global_position = global_position
+		get_parent().add_child(coin)
 
 
 func _on_timer_timeout() -> void:
-	mousedelay == true
+	mousedelay = true
