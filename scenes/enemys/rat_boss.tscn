@@ -116,6 +116,18 @@ texture = ExtResource("3_utgo6")
 [node name="Marker2D" type="Marker2D" parent="EnemyGun" unique_id=556416114]
 position = Vector2(25, -9)
 
+[node name="EnemyGun2" type="Node2D" parent="." unique_id=362650061]
+visible = false
+position = Vector2(-23, -74)
+
+[node name="Sprite2D" type="Sprite2D" parent="EnemyGun2" unique_id=201853939]
+position = Vector2(5, -13)
+scale = Vector2(-5, 5)
+texture = ExtResource("3_utgo6")
+
+[node name="Marker2D" type="Marker2D" parent="EnemyGun2" unique_id=556416115]
+position = Vector2(25, -9)
+
 [connection signal="area_entered" from="HurtArea" to="." method="_on_hurt_area_area_entered"]
 [connection signal="body_entered" from="HurtArea" to="." method="_on_hurt_area_body_entered"]
 [connection signal="body_exited" from="HurtArea" to="." method="_on_hurt_area_body_exited"]

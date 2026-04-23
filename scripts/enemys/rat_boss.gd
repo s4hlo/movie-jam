@@ -33,12 +33,14 @@ var is_reloading_rush: bool = false
 
 const ENEMY_BULLET = preload("res://scenes/gunshot/enemy_bullet.tscn")
 const SHOOT_RANGE := 350.0
-const SHOOT_COOLDOWN := 1.2
+const SHOOT_COOLDOWN := 0.5
 
 var _shoot_cooldown_time := 2.0
 
 @onready var gun: Node2D = $EnemyGun
 @onready var muzzle: Marker2D = $EnemyGun/Marker2D
+@onready var gun2: Node2D = $EnemyGun2
+@onready var muzzle2: Marker2D = $EnemyGun2/Marker2D
 
 # OUTROS
 var knockback := Vector2.ZERO
@@ -61,7 +63,8 @@ func _ready() -> void:
 	target = get_tree().get_first_node_in_group("player")
 	
 	gun.visible = false
-	
+	gun2.visible = false
+
 	damage_timer.wait_time = DAMAGE_COOLDOWN
 	damage_timer.one_shot = true
 	damage_timer.timeout.connect(_on_damage_timer_timeout)
@@ -185,19 +188,28 @@ func _on_damage_timer_timeout() -> void:
 	try_damage()
 	
 func _aim_gun_at(target_pos: Vector2) -> void:
-	gun.visible = true
-	gun.look_at(target_pos)
-	var deg = wrapf(rad_to_deg(gun.rotation), 0.0, 360.0)
+	_aim_single_gun(gun, target_pos)
+	_aim_single_gun(gun2, target_pos)
+
+func _aim_single_gun(g: Node2D, target_pos: Vector2) -> void:
+	g.visible = true
+	g.look_at(target_pos)
+	var deg = wrapf(rad_to_deg(g.rotation), 0.0, 360.0)
 	if deg > 90.0 and deg < 270.0:
-		gun.scale.y = -1
+		g.scale.y = -1
 	else:
-		gun.scale.y = 1
+		g.scale.y = 1
 
 func _shoot() -> void:
+	_spawn_bullet(gun, muzzle)
+	_spawn_bullet(gun2, muzzle2)
+
+func _spawn_bullet(g: Node2D, m: Marker2D) -> void:
 	var b = ENEMY_BULLET.instantiate()
+	b.damage = 2
 	get_tree().root.add_child(b)
-	b.global_position = muzzle.global_position
-	b.rotation = gun.rotation
+	b.global_position = m.global_position
+	b.rotation = g.rotation
 
 #####################################################
 ############ SINAIS ############
