@@ -48,7 +48,7 @@ var target: Node2D = null
 var player_in_hurt_area: Node2D = null
 var randfile: int = 0
 
-#@onready var anim: AnimationPlayer = $AnimationPlayer
+@onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var sprite: Sprite2D = $Sprite
 @onready var damage_timer: Timer = Timer.new()
 @onready var hurt_area: Area2D = $HurtArea
@@ -83,8 +83,8 @@ func start_chasing_sequence() -> void:
 	current_state = State.IDLE
 	current_Phases = Phases.FIRST
 	speed_rush = SPEED_RUSH
-	# anim.play("idle")
-	
+	anim.play("idle")
+
 	await get_tree().create_timer(1.5).timeout
 	
 	pong_direction = global_position.direction_to(target.global_position)
@@ -96,33 +96,34 @@ func start_chasing_sequence() -> void:
 func _physics_process(_delta: float) -> void:
 	if current_state == State.IDLE:
 		velocity = Vector2.ZERO
-		#anim.play("idle")
+		anim.play("idle")
 		return
-	
+
 	if current_state == State.DEAD:
 		velocity = Vector2.ZERO
 	else:
 		if not is_reloading_rush:
 			velocity = pong_direction * speed_rush
-			#anim.play("walk")
+			sprite.flip_h = pong_direction.x > 0
+			anim.play("walk")
 		else:
 			if target:
 				var dir = global_position.direction_to(target.global_position)
 				velocity = dir * SPEED_RAT
 				sprite.flip_h = dir.x > 0
-				#anim.play("walk_reloading"
-				
+				anim.play("walk")
+
 		if Phases.SECOND == current_Phases:
 			if target:
 				var dir = global_position.direction_to(target.global_position)
 				sprite.flip_h = dir.x > 0
 				_aim_gun_at(target.global_position)
-				
+
 				_shoot_cooldown_time -= _delta
 				if _shoot_cooldown_time <= 0.0:
 					_shoot()
 					_shoot_cooldown_time = SHOOT_COOLDOWN
-					
+
 	if is_reloading_rush:
 		velocity += knockback
 		knockback *= KNOCKBACK_FRICTION
@@ -130,14 +131,17 @@ func _physics_process(_delta: float) -> void:
 			knockback = Vector2.ZERO
 
 	move_and_slide()
-	
+
 	if current_state == State.CHASING and not is_reloading_rush:
-		if get_slide_collision_count() > 0:
-			var collision = get_slide_collision(0)
-			pong_direction = pong_direction.bounce(collision.get_normal())
-			sprite.flip_h = pong_direction.x > 0
-			
-			speed_rush = min(speed_rush + 50.0, 700.0)
+		var combined_normal := Vector2.ZERO
+		for i in get_slide_collision_count():
+			combined_normal += get_slide_collision(i).get_normal()
+		if combined_normal != Vector2.ZERO:
+			combined_normal = combined_normal.normalized()
+			if pong_direction.dot(combined_normal) < 0.0:
+				pong_direction = pong_direction.bounce(combined_normal).normalized()
+				sprite.flip_h = pong_direction.x > 0
+				speed_rush = min(speed_rush + 50.0, 700.0)
 			
 func _on_pong_timer_timeout() -> void:
 	is_reloading_rush = true
@@ -158,8 +162,7 @@ func die() -> void:
 	current_state = State.DEAD
 	set_physics_process(false)
 	hurt_area.queue_free()
-	#anim.stop()
-	#sprite.frame = 22
+	anim.stop()
 	state_changed.emit("destroyed")
 	SaveManager.add_rat_kill()
 	await get_tree().create_timer(0.5).timeout
