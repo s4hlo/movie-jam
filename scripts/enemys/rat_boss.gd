@@ -16,7 +16,7 @@ const SPEED_RAT := 150.0
 const KNOCKBACK_FORCE := 500.0
 const SPEED_RUSH := 400.0
 const KNOCKBACK_FRICTION := 0.85
-var health: int = 200
+var health: int = 400
 var damage: int = 1
 var speed_rush: float
 
@@ -33,7 +33,7 @@ var is_reloading_rush: bool = false
 
 const ENEMY_BULLET = preload("res://scenes/gunshot/enemy_bullet.tscn")
 const SHOOT_RANGE := 350.0
-const SHOOT_COOLDOWN := 0.5
+const SHOOT_COOLDOWN := 0.25
 
 var _shoot_cooldown_time := 2.0
 
@@ -170,6 +170,7 @@ func die() -> void:
 	SaveManager.add_rat_kill()
 	await get_tree().create_timer(0.5).timeout
 	queue_free()
+	get_tree().call_group("Victory", "show_victory")
 
 func flash_hit() -> void:
 	sprite.material.set_shader_parameter("hit", true)
@@ -222,7 +223,7 @@ func _on_hurt_area_area_entered(area: Area2D) -> void:
 		if not area.is_in_group("laser"):
 			area.queue_free()
 		flash_hit()
-		if health <= 100 and current_Phases == Phases.FIRST:
+		if health <= 150 and current_Phases == Phases.FIRST:
 			current_Phases = Phases.SECOND 
 			# animacao da troca
 			
